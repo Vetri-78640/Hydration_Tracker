@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Navbar from "@/sections/Navbar";
 const Page = () => {
     return (
-        <div>Hydration_Tracker</div>
+        <>
+            <Navbar />
+        </>
     )
 }
 export default Page
