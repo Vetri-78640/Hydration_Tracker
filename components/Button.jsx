@@ -19,7 +19,7 @@ const buttonClasses = cva(
 // Button component
 const Button = ({ children, className, variant }) => {
     return (
-        <button className={twMerge(buttonClasses(variant), className)}>
+        <button className={twMerge(buttonClasses(variant),"cursor-pointer", className)}>
             {children}
         </button>
     );
