@@ -72,7 +72,7 @@ const Rotating = ({ children }) => {
     const ref = useRef(null)
     useFrame((_, delta) => {
         if (ref.current) {
-            ref.current.rotation.y += delta * 0.4 // tweak speed here
+            ref.current.rotation.y += delta * 0.2 // tweak speed here
         }
     })
     return <group ref={ref}>{children}</group>

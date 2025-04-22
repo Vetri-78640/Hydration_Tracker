@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import Button from '../Components/Button';
 
 const WaterAnimation = () => {
     const containerRef = useRef(null);
@@ -73,7 +74,7 @@ const WaterAnimation = () => {
     }, []);
 
     return (
-        <section className="flex justify-center mt-28">
+        <section className="flex flex-col items-center justify-center gap-32  mt-24 md:mt-32">
             <div
                 ref={containerRef}
                 className="relative"
@@ -106,6 +107,7 @@ const WaterAnimation = () => {
                     Stay Hydrated
                 </h1>
             </div>
+            <Button>Know More</Button>
         </section>
     );
 };
