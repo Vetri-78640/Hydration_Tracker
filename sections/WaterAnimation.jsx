@@ -1,113 +1,126 @@
 "use client";
+import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import Button from '../Components/Button';
+gsap.registerPlugin(ScrollTrigger);
 
 const WaterAnimation = () => {
     const containerRef = useRef(null);
     const outlineTextRef = useRef(null);
     const glowTextRef = useRef(null);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const waveTimeline = useRef(null);
+    const sectionRef = useRef(null);
 
     useEffect(() => {
-        // Wait for component to fully mount before starting animations
-        const loadTimeout = setTimeout(() => {
-            setIsLoaded(true);
+        const container = containerRef.current;
+        const section = sectionRef.current;
+        const outlineText = outlineTextRef.current;
+        const glowText = glowTextRef.current;
 
-            // Only start animation after elements are definitely rendered
-            if (glowTextRef.current) {
-                // Initial setup - hide until ready
-                gsap.set(glowTextRef.current, {
-                    clipPath: "polygon(0% 55%, 5% 54%, 10% 53%, 15% 52%, 20% 51%, 25% 50%, 30% 50%, 35% 51%, 40% 52%, 45% 53%, 50% 55%, 55% 56%, 60% 57%, 65% 58%, 70% 59%, 75% 60%, 80% 60%, 85% 59%, 90% 58%, 95% 56%, 100% 55%, 100% 100%, 0 100%)",
-                    opacity: 0
-                });
+        const scrollDistance = container.scrollWidth - section.clientWidth;
 
-                // Fade in first - smoothly reveal the animation
-                gsap.to(containerRef.current, {
-                    opacity: 1,
-                    duration: 0.5,
-                    onComplete: () => {
-                        // Once faded in, start the wave animation
-                        startWaveAnimation();
-                    }
-                });
-            }
-        }, 100);
+        // Set initial opacity for both texts
+        gsap.set([outlineText, glowText], { opacity: 0 });
+
+        // Set initial clip path for wave
+        gsap.set(glowText, {
+            clipPath:
+                "polygon(0% 55%, 5% 54%, 10% 53%, 15% 52%, 20% 51%, 25% 50%, 30% 50%, 35% 51%, 40% 52%, 45% 53%, 50% 55%, 55% 56%, 60% 57%, 65% 58%, 70% 59%, 75% 60%, 80% 60%, 85% 59%, 90% 58%, 95% 56%, 100% 55%, 100% 100%, 0 100%)",
+        });
+
+        // Fade in section then trigger wave
+        const fadeInTimeline = gsap.timeline({
+            onComplete: () => {
+                startWaveAnimation();
+            },
+        });
+
+        fadeInTimeline.to(container, {
+            opacity: 1,
+            duration: 0.5,
+        });
+
+        const horizontalScroll = gsap.to(container, {
+            x: -scrollDistance,
+            ease: "none",
+        });
+
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top 0",
+            end: "top -150%",
+            pin: true,
+            scrub: 2,
+            animation: horizontalScroll,
+            markers: true,
+            onEnter: () => {
+                gsap.to([outlineText, glowText], { opacity: 1, duration: 0.5 });
+            },
+
+            onEnterBack: () => {
+                gsap.to([outlineText, glowText], { opacity: 1, duration: 0.5 });
+            },
+            onLeaveBack: () => {
+                gsap.to([outlineText, glowText], { opacity: 0, duration: 2 });
+            },
+        });
 
         function startWaveAnimation() {
-            // Make sure the element exists before attempting to animate
-            if (!glowTextRef.current) return;
+            if (!glowText) return;
 
-            // Fade in the glow text
-            gsap.to(glowTextRef.current, {
-                duration: 0.5,
-                opacity: 1
-            });
-
-            // Create the wave animation with GPU acceleration
-            const tl = gsap.timeline({
+            waveTimeline.current = gsap.timeline({
                 repeat: -1,
                 defaults: {
                     duration: 2,
                     ease: "power1.inOut",
-                    force3D: true, // Force GPU acceleration
-                }
+                    force3D: true,
+                },
             });
 
-            // First half of the wave animation
-            tl.to(glowTextRef.current, {
-                clipPath: "polygon(0% 55%, 5% 58%, 10% 61%, 15% 64%, 20% 66%, 25% 67%, 30% 66%, 35% 63%, 40% 59%, 45% 54%, 50% 47%, 55% 44%, 60% 42%, 65% 44%, 70% 48%, 75% 53%, 80% 58%, 85% 61%, 90% 60%, 95% 57%, 100% 55%, 100% 100%, 0 100%)"
-            });
-
-            // Second half of the wave animation
-            tl.to(glowTextRef.current, {
-                clipPath: "polygon(0% 55%, 5% 54%, 10% 53%, 15% 52%, 20% 51%, 25% 50%, 30% 50%, 35% 51%, 40% 52%, 45% 53%, 50% 55%, 55% 56%, 60% 57%, 65% 58%, 70% 59%, 75% 60%, 80% 60%, 85% 59%, 90% 58%, 95% 56%, 100% 55%, 100% 100%, 0 100%)"
-            });
+            waveTimeline.current
+                .to(glowText, {
+                    clipPath:
+                        "polygon(0% 55%, 5% 58%, 10% 61%, 15% 64%, 20% 66%, 25% 67%, 30% 66%, 35% 63%, 40% 59%, 45% 54%, 50% 47%, 55% 44%, 60% 42%, 65% 44%, 70% 48%, 75% 53%, 80% 58%, 85% 61%, 90% 60%, 95% 57%, 100% 55%, 100% 100%, 0 100%)",
+                })
+                .to(glowText, {
+                    clipPath:
+                        "polygon(0% 55%, 5% 54%, 10% 53%, 15% 52%, 20% 51%, 25% 50%, 30% 50%, 35% 51%, 40% 52%, 45% 53%, 50% 55%, 55% 56%, 60% 57%, 65% 58%, 70% 59%, 75% 60%, 80% 60%, 85% 59%, 90% 58%, 95% 56%, 100% 55%, 100% 100%, 0 100%)",
+                });
         }
 
-
         return () => {
-            clearTimeout(loadTimeout);
-            gsap.killTweensOf(glowTextRef.current);
+            if (waveTimeline.current) waveTimeline.current.kill();
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
         };
     }, []);
 
     return (
-        <section className="flex flex-col items-center justify-center gap-32  mt-24 md:mt-32">
-            <div
-                ref={containerRef}
-                className="relative"
-                style={{
-                    opacity: 0, // Start hidden
-                    willChange: 'transform', // Hint to browser to optimize
-                }}
-            >
-                <h1
-                    ref={outlineTextRef}
-                    className="absolute whitespace-nowrap text-[4em] md:text-[7em] lg:text-[8em]"
-                    style={{
-                        transform: 'translate(-50%, -50%)',
-                        color: 'transparent',
-                        WebkitTextStroke: '1px #16ade0',
-                        willChange: 'transform', // Optimize for animation
-                    }}
-                >
-                    Stay Hydrated
-                </h1>
-                <h1
-                    ref={glowTextRef}
-                    className="absolute whitespace-nowrap text-[4em] md:text-[7em] lg:text-[8em] text-[#16ade0]"
-                    style={{
-                        transform: 'translate(-50%, -50%)',
-                        textShadow: '0 0 10px #16ade0, 0 0 20px #16ade0, 0 0 40px #16ade0, 0 0 80px #16ade0',
-                        willChange: 'clip-path, transform', // Optimize specific properties
-                    }}
-                >
-                    Stay Hydrated
-                </h1>
+        <section ref={sectionRef} className="relative">
+            <div ref={containerRef}>
+                <div className="relative">
+                    <h1
+                        ref={outlineTextRef}
+                        className="whitespace-nowrap text-[20em] md:text-[26em] lg:text-[32em]"
+                        style={{
+                            color: "transparent",
+                            WebkitTextStroke: "1px #16ade0",
+                        }}
+                    >
+                        Stay Hydrated
+                    </h1>
+                    <h1
+                        ref={glowTextRef}
+                        className="absolute top-0 left-0 whitespace-nowrap text-[20em] md:text-[26em] lg:text-[32em] text-[#16ade0]"
+                        style={{
+                            textShadow:
+                                "0 0 10px #16ade0, 0 0 20px #16ade0, 0 0 40px #16ade0, 0 0 80px #16ade0",
+                        }}
+                    >
+                        Stay Hydrated
+                    </h1>
+                </div>
             </div>
-            <Button>Know More</Button>
         </section>
     );
 };
