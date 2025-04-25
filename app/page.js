@@ -4,6 +4,7 @@ import Hero from "@/sections/Hero";
 import Showcase from "@/sections/Showcase";
 import WaterAnimation from "@/sections/WaterAnimation";
 import Features from "@/sections/Features";
+import Introduction from "@/sections/Introduction";
 
 const Page = () => {
     return (
@@ -11,6 +12,7 @@ const Page = () => {
             <Navbar />
             <Hero/>
             <Showcase />
+            <Introduction/>
             <WaterAnimation/>
             <Features />
         </>

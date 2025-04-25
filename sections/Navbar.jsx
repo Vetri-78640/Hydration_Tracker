@@ -11,12 +11,12 @@ const Navbar = () => {
     return (
         <section className="py-4 lg:py-8">
             <div className="container max-w-5xl mx-auto">
-                <div className="grid grid-cols-2 lg:grid-cols-3 border border-white rounded-full px-4 p-2 md:pr-2 items-center">
+                <div className="grid grid-cols-2 lg:grid-cols-3 border border-blue-300/60 rounded-full px-4 p-2 md:pr-2 items-center">
                     <div>
                         <Image src="/assets/images/icon.svg" alt="logo" width={16} height={16} className="h-9 w-auto md:h-auto md:max-h-11" />
                     </div>
                     <div className="hidden lg:flex justify-center items-center">
-                        <nav className="flex gap-6 font-medium">
+                        <nav className="flex gap-6 font-medium text-xl">
                             {navLinks.map(link => (
                                 <a href={link.href} key={link.label}>{link.label}</a>
                             ))}

@@ -1,64 +1,17 @@
 @import "tailwindcss";
-/*@layer components {*/
-/*    .content {*/
-/*        @apply relative;*/
 
-/*        h1 {*/
-/*            @apply absolute whitespace-nowrap;*/
-/*            transform: translate(-50%, -50%);*/
-/*            @apply text-[4em];*/
-/*            -webkit-text-stroke: 1px #16ade0;*/
+@font-face {
+    font-family: "OverusedGrotesk";
+    src: url("/fonts/OverusedGroteskRoman-VF.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
 
-/*            !* Tablet (md) *!*/
-/*            @media (min-width: 768px) {*/
-/*                @apply text-[7em];*/
-/*                -webkit-text-stroke: 1.5px #16ade0;*/
-/*            }*/
+:root {
+    --font-overused: "OverusedGrotesk", sans-serif;
+}
 
-/*            !* Desktop (lg) *!*/
-/*            @media (min-width: 1024px) {*/
-/*                @apply text-[8em];*/
-/*                -webkit-text-stroke: 2px #16ade0;*/
-/*            }*/
-
-/*            &:first-child {*/
-/*                color: transparent;*/
-
-/*            }*/
-
-/*            &:last-child {*/
-/*                @apply text-[#16ade0];*/
-/*                text-shadow:*/
-/*                        0 0 10px #16ade0,*/
-/*                        0 0 20px #16ade0,*/
-/*                        0 0 40px #16ade0,*/
-/*                        0 0 80px #16ade0;*/
-/*                animation: wave 4s ease-in-out infinite;*/
-/*            }*/
-/*        }*/
-/*    }*/
-/*}*/
-
-/*!* Animations *!*/
-/*@layer utilities {*/
-/*    @keyframes wave {*/
-/*        0%, 100% {*/
-/*            clip-path: polygon(*/
-/*                    0% 55%, 5% 54%, 10% 53%, 15% 52%, 20% 51%, 25% 50%,*/
-/*                    30% 50%, 35% 51%, 40% 52%, 45% 53%, 50% 55%,*/
-/*                    55% 56%, 60% 57%, 65% 58%, 70% 59%, 75% 60%,*/
-/*                    80% 60%, 85% 59%, 90% 58%, 95% 56%, 100% 55%,*/
-/*                    100% 100%, 0 100%*/
-/*            );*/
-/*        }*/
-/*        50% {*/
-/*            clip-path: polygon(*/
-/*                    0% 55%, 5% 58%, 10% 61%, 15% 64%, 20% 66%, 25% 67%,*/
-/*                    30% 66%, 35% 63%, 40% 59%, 45% 54%, 50% 47%,*/
-/*                    55% 44%, 60% 42%, 65% 44%, 70% 48%, 75% 53%,*/
-/*                    80% 58%, 85% 61%, 90% 60%, 95% 57%, 100% 55%,*/
-/*                    100% 100%, 0 100%*/
-/*            );*/
-/*        }*/
-/*    }*/
-/*}*/
+body {
+    font-family: var(--font-overused), sans-serif;
+}
