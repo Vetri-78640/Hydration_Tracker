@@ -5,6 +5,7 @@ import Showcase from "@/sections/Showcase";
 import WaterAnimation from "@/sections/WaterAnimation";
 import Features from "@/sections/Features";
 import Introduction from "@/sections/Introduction";
+import GetStarted from "@/sections/GetStarted";
 
 const Page = () => {
     return (
@@ -15,6 +16,7 @@ const Page = () => {
             <Introduction/>
             <WaterAnimation/>
             <Features />
+            <GetStarted/>
         </>
     )
 }
