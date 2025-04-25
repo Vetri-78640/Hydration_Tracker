@@ -9,7 +9,7 @@ const navLinks = [
 
 const Navbar = () => {
     return (
-        <section className="py-4 lg:py-8">
+        <section className="py-4 lg:py-8 px-3">
             <div className="container max-w-5xl mx-auto">
                 <div className="grid grid-cols-2 lg:grid-cols-3 border border-blue-300/60 rounded-full px-4 p-2 md:pr-2 items-center">
                     <div>

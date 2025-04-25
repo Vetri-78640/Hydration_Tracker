@@ -2,7 +2,7 @@ import React from 'react'
 
 const Introduction = () => {
     return (
-        <section className="py-6 md:px-24 flex justify-center">
+        <section className="py-6 md:px-24 flex justify-center px-3">
             <div className="container px-3">
                 <div className="text-center">
                     <h2 className="inline-block px-6 py-4 rounded-full bg-blue-300/10 text-4xl md:text-5xl border border-blue-300/50 text-blue-300 mb-12">
