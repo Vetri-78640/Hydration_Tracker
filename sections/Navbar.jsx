@@ -75,7 +75,7 @@ const Navbar = () => {
                                 <div className="flex flex-col items-center gap-4 py-4">
                                     {navLinks.map(link => (
                                         <a
-                                            href={link.href}
+                                            href={link.href}s
                                             key={link.label}
                                             className="text-white hover:text-blue-300 transition-colors duration-300"
                                         >
