@@ -12,7 +12,7 @@ const GetStarted = () => {
                     Get started with Hydraze
                 </h3>
             </div>
-            <Button>Sign up</Button>
+            <Button>Sign Up</Button>
         </section>
     );
 }

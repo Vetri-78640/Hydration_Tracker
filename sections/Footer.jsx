@@ -25,7 +25,10 @@ const Footer = () => {
                     <div>
                         <nav className="flex gap-6">
                             {footerLinks.map(link => (
-                                <a href={link.href} key={link.href} className="text-white/70">
+                                <a href={link.href}
+                                   key={link.href}
+                                   className="text-white/70
+                                    hover:text-blue-300 transition-colors duration-300">
                                     {link.label}
                                 </a>
                             ))}

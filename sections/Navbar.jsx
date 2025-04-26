@@ -24,7 +24,12 @@ const Navbar = () => {
                         <div className="hidden lg:flex justify-center items-center">
                             <nav className="flex gap-6 font-medium text-xl">
                                 {navLinks.map(link => (
-                                    <a href={link.href} key={link.label}>{link.label}</a>
+                                    <a href={link.href}
+                                       key={link.label}
+                                       className="text-white hover:text-blue-300 transition-colors duration-300"
+                                    >
+                                        {link.label}
+                                    </a>
                                 ))}
                             </nav>
                         </div>
@@ -69,7 +74,11 @@ const Navbar = () => {
                             >
                                 <div className="flex flex-col items-center gap-4 py-4">
                                     {navLinks.map(link => (
-                                        <a href={link.href} key={link.label}>
+                                        <a
+                                            href={link.href}
+                                            key={link.label}
+                                            className="text-white hover:text-blue-300 transition-colors duration-300"
+                                        >
                                             {link.label}
                                         </a>
                                     ))}
