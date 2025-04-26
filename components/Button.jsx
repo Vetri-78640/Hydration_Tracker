@@ -6,8 +6,8 @@ const buttonClasses = cva(
     {
         variants: {
             variant: {
-                primary: "bg-blue-300 text-neutral-950 border-blue-300",
-                secondary: "border-white text-white bg-transparent",
+                primary: "bg-blue-300 text-neutral-950 border-blue-300/60",
+                secondary: "border-blue-300 text-white bg-transparent",
             },
         },
         defaultVariants: {
@@ -19,7 +19,7 @@ const buttonClasses = cva(
 // Button component
 const Button = ({ children, className, variant }) => {
     return (
-        <button className={twMerge(buttonClasses(variant),"cursor-pointer", className)}>
+        <button className={twMerge(buttonClasses({ variant }), "cursor-pointer", className)}>
             {children}
         </button>
     );
