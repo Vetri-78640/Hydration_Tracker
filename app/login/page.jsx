@@ -2,7 +2,7 @@
 
 import Button from "@/components/Button";
 
-const Signup = () => {
+const Login = () => {
     return (
         <sectio>
             <div className="min-h-screen flex items-center justify-center bg-[#050521] px-3">
@@ -10,7 +10,7 @@ const Signup = () => {
                     className="bg-blue-950/20 p-8 rounded-2xl shadow-lg w-full max-w-md"
                     style={{boxShadow: "0 0 10px #64b5f6, 0 0 20px #64b5f6, 0 0 40px #64b5f6"}}
                 >
-                    <h2 className="text-3xl font-bold text-center text-white mb-6">Sign Up</h2>
+                    <h2 className="text-3xl font-bold text-center text-white mb-6">Log In</h2>
 
                     <form className="flex flex-col gap-4">
                         <div>
@@ -37,13 +37,13 @@ const Signup = () => {
                             />
                         </div>
 
-                        <Button>Sign Up</Button>
+                        <Button>Log In</Button>
                     </form>
 
                     <p className="text-sm text-center text-white/60 mt-6">
-                        Already have an account?{" "}
-                        <a href="/login" className="text-blue-300 hover:underline">
-                            Log In
+                        Don't have an account?{" "}
+                        <a href="/sign-up" className="text-blue-300 hover:underline">
+                            Sign Up
                         </a>
                     </p>
                 </div>
@@ -51,4 +51,4 @@ const Signup = () => {
         </sectio>
     )
 }
-export default Signup
+export default Login
