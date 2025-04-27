@@ -4,6 +4,7 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import {twMerge} from "tailwind-merge";
 import {AnimatePresence,motion} from "framer-motion"
+import Link from "next/link";
 const navLinks = [
     {label: 'Home', href: '#'},
     {label: 'Features', href: '#features'},
@@ -24,12 +25,12 @@ const Navbar = () => {
                         <div className="hidden lg:flex justify-center items-center">
                             <nav className="flex gap-6 font-medium text-xl">
                                 {navLinks.map(link => (
-                                    <a href={link.href}
+                                    <Link href={link.href}
                                        key={link.label}
                                        className="text-white hover:text-blue-300 transition-colors duration-300"
                                     >
                                         {link.label}
-                                    </a>
+                                    </Link>
                                 ))}
                             </nav>
                         </div>
@@ -55,10 +56,10 @@ const Navbar = () => {
                                       className={twMerge(("origin-left transition"),isOpen && "-rotate-45 translate-y-1")}
                                 ></line>
                             </svg>
-                            <Button variant="secondary" className="hidden md:inline-flex">
+                            <Button variant="secondary" className="hidden md:inline-flex" href="/login">
                                 Log In
                             </Button>
-                            <Button variant="primary" className="hidden md:inline-flex">
+                            <Button variant="primary" className="hidden md:inline-flex" href="/sign-up">
                                 Sign Up
                             </Button>
                         </div>
@@ -74,13 +75,13 @@ const Navbar = () => {
                             >
                                 <div className="flex flex-col items-center gap-4 py-4">
                                     {navLinks.map(link => (
-                                        <a
+                                        <Link
                                             href={link.href}s
                                             key={link.label}
                                             className="text-white hover:text-blue-300 transition-colors duration-300"
                                         >
                                             {link.label}
-                                        </a>
+                                        </Link>
                                     ))}
                                     <Button variant="secondary">Log In</Button>
                                     <Button variant="primary">Sign Up</Button>

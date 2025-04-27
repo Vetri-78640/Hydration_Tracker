@@ -3,7 +3,7 @@ import FeatureCard from "@/components/FeatureCard";
 
 const Features = () => {
     return (
-        <section className="py-24 md:mt-12 flex flex-col items-center justify-center">
+        <section id="features" className="py-24 md:mt-12 flex flex-col items-center justify-center">
             <div className="container flex flex-col justify-center items-center p-12 md:p-6">
                 <h2 className="text-6xl font-medium text-center mt-6">
                     Hydraze makes tracking <span className="text-blue-300 block">convenient</span>

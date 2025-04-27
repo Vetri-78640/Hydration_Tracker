@@ -1,6 +1,9 @@
+"use client"
 import React from "react";
 import { cva } from "class-variance-authority";
 import { twMerge } from 'tailwind-merge';
+import Link from 'next/link';
+
 const buttonClasses = cva(
     "inline-flex items-center justify-center border h-12 rounded-full px-6 font-medium",
     {
@@ -11,15 +14,24 @@ const buttonClasses = cva(
             },
         },
         defaultVariants: {
-            variant: "primary", //fallback variant
+            variant: "primary",
         },
     }
 );
 
-// Button component
-const Button = ({ children, className, variant }) => {
+const Button = ({ children, className, variant, href }) => {
+    const mergedClasses = twMerge(buttonClasses({ variant }), "cursor-pointer", className);
+
+    if (href) {
+        return (
+            <Link href={href} className={mergedClasses}>
+                {children}
+            </Link>
+        );
+    }
+
     return (
-        <button className={twMerge(buttonClasses({ variant }), "cursor-pointer", className)}>
+        <button className={mergedClasses}>
             {children}
         </button>
     );
