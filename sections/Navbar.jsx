@@ -83,8 +83,8 @@ const Navbar = () => {
                                             {link.label}
                                         </Link>
                                     ))}
-                                    <Button variant="secondary">Log In</Button>
-                                    <Button variant="primary">Sign Up</Button>
+                                    <Button variant="secondary" href="/login">Log In</Button>
+                                    <Button variant="primary" href="/sign-up">Sign Up</Button>
                                 </div>
 
                             </motion.div>

@@ -24,6 +24,7 @@ const Button = ({ children, className, variant, href }) => {
 
     if (href) {
         return (
+
             <Link href={href} className={mergedClasses}>
                 {children}
             </Link>
@@ -31,9 +32,11 @@ const Button = ({ children, className, variant, href }) => {
     }
 
     return (
+        
         <button className={mergedClasses}>
             {children}
         </button>
+
     );
 };
 

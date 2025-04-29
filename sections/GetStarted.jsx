@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Button from "@/components/Button";
 
@@ -12,7 +13,7 @@ const GetStarted = () => {
                     Get started with Hydraze
                 </h3>
             </div>
-            <Button>Sign Up</Button>
+            <Button href="/sign-up">Sign Up</Button>
         </section>
     );
 }
