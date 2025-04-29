@@ -1,18 +1,45 @@
 "use client";
-
+import { useState, useEffect } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "@/app/firebase/config.js";
 import Button from "@/components/Button";
 import Link from "next/link";
 
 const Signup = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [
+        createUserWithEmailAndPassword,
+        userCredential,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+    const handleSignUp = () => {
+        createUserWithEmailAndPassword(email, password);
+    };
+    useEffect(() => {
+        if (userCredential) {
+            console.log("User created:", userCredential);
+            setEmail("");
+            setPassword("");
+        }
+    }, [userCredential]);
+
+    useEffect(() => {
+        if (error) {
+            console.error("Signup error:", error.message);
+        }
+    }, [error]);
+
     return (
         <main className="min-h-screen flex items-center justify-center bg-[#050521] px-3">
             <div
                 className="bg-blue-950/20 p-8 rounded-2xl shadow-lg w-full max-w-md"
                 style={{ boxShadow: "0 0 10px #64b5f6, 0 0 20px #64b5f6, 0 0 40px #64b5f6" }}
             >
-                <h2 className="text-3xl font-bold text-center text-white mb-6">Sign Up</h2>
+                <h2 className="text-3xl font-medium text-center text-white mb-6">Sign Up</h2>
 
-                <form className="flex flex-col gap-4">
+                <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
                             Email Address
@@ -22,6 +49,8 @@ const Signup = () => {
                             type="email"
                             className="w-full border border-blue-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-200"
                             placeholder="you@example.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
 
@@ -34,10 +63,14 @@ const Signup = () => {
                             type="password"
                             className="w-full border border-blue-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-200"
                             placeholder="••••••••"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
-                    <Button>Sign Up</Button>
+                    <Button onClick={handleSignUp} disabled={loading}>
+                        {loading ? "Signing Up..." : "Sign Up"}
+                    </Button>
                 </form>
 
                 <p className="text-sm text-center text-white/60 mt-6">

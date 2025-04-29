@@ -1,5 +1,4 @@
 import "./globals.css";
-
 export const metadata = {
     title: "Hydration Tracker",
     description: "Track your daily water intake",

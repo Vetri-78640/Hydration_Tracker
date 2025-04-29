@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
 
 const buttonClasses = cva(
-    "inline-flex items-center justify-center border h-12 rounded-full px-6 font-medium",
+    "inline-flex items-center justify-center border h-12 rounded-full px-6 font-medium cursor-pointer",
     {
         variants: {
             variant: {
@@ -19,12 +19,11 @@ const buttonClasses = cva(
     }
 );
 
-const Button = ({ children, className, variant, href }) => {
+const Button = ({ children, className, variant, href, onClick }) => {
     const mergedClasses = twMerge(buttonClasses({ variant }), "cursor-pointer", className);
 
     if (href) {
         return (
-
             <Link href={href} className={mergedClasses}>
                 {children}
             </Link>
@@ -32,8 +31,7 @@ const Button = ({ children, className, variant, href }) => {
     }
 
     return (
-        
-        <button className={mergedClasses}>
+        <button className={mergedClasses} onClick={onClick}>
             {children}
         </button>
 
