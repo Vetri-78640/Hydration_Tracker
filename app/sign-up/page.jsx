@@ -4,6 +4,8 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "@/app/firebase/config.js";
 import Button from "@/components/Button";
 import Link from "next/link";
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
     const [email, setEmail] = useState("");
@@ -27,12 +29,17 @@ const Signup = () => {
 
     useEffect(() => {
         if (error) {
-            console.error("Signup error:", error.message);
+            if (error.code === "auth/email-already-in-use"){
+                toast.error("Email already in use");
+            }
+            console.error("Signup error:", error.code, error.message);
+            console.log(error.code);
         }
     }, [error]);
 
     return (
         <main className="min-h-screen flex items-center justify-center bg-[#050521] px-3">
+            <ToastContainer/>
             <div
                 className="bg-blue-950/20 p-8 rounded-2xl shadow-lg w-full max-w-md"
                 style={{ boxShadow: "0 0 10px #64b5f6, 0 0 20px #64b5f6, 0 0 40px #64b5f6" }}

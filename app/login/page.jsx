@@ -4,7 +4,9 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "@/app/firebase/config.js";
 import Button from "@/components/Button";
 import Link from "next/link";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -26,19 +28,22 @@ const Login = () => {
             console.log("User logged in:", userCredential);
             setEmail("");
             setPassword("");
-            //redirect
-            router.push('/')
+            router.push('/');
         }
     }, [userCredential]);
 
     useEffect(() => {
         if (error) {
-            console.error("Login error:", error.message);
+            if (error.code === "auth/invalid-credential") {
+                toast.error("Invalid email or password.");
+            }
+            console.error("Login error:", error.code, error.message);
         }
     }, [error]);
 
     return (
         <main className="min-h-screen flex items-center justify-center bg-[#050521] px-3">
+            <ToastContainer/>
             <div
                 className="bg-blue-950/20 p-8 rounded-2xl shadow-lg w-full max-w-md"
                 style={{ boxShadow: "0 0 10px #64b5f6, 0 0 20px #64b5f6, 0 0 40px #64b5f6" }}
