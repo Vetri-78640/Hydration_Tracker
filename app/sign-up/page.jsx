@@ -4,24 +4,26 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "@/app/firebase/config.js";
 import Button from "@/components/Button";
 import Link from "next/link";
-import {toast, ToastContainer} from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [
-        createUserWithEmailAndPassword,
-        userCredential,
-        loading,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
-    const handleSignUp = () => {
-        createUserWithEmailAndPassword(email, password);
+    const [createUserWithEmailAndPassword, userCredential, loading, error] = useCreateUserWithEmailAndPassword(auth);
+
+    const handleSignUp = async () => {
+        const result = await createUserWithEmailAndPassword(email, password);
+        if (result && result.user) {
+            await updateProfile(result.user, { displayName: name });
+        }
     };
+
     useEffect(() => {
         if (userCredential) {
-            console.log("User created:", userCredential);
+            setName("");
             setEmail("");
             setPassword("");
         }
@@ -29,11 +31,10 @@ const Signup = () => {
 
     useEffect(() => {
         if (error) {
-            if (error.code === "auth/email-already-in-use"){
+            if (error.code === "auth/email-already-in-use") {
                 toast.error("Email already in use");
             }
             console.error("Signup error:", error.code, error.message);
-            console.log(error.code);
         }
     }, [error]);
 
@@ -47,6 +48,19 @@ const Signup = () => {
                 <h2 className="text-3xl font-medium text-center text-white mb-6">Sign Up</h2>
 
                 <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+                    <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-white mb-1">
+                            Name
+                        </label>
+                        <input
+                            id="name"
+                            type="text"
+                            className="w-full border border-blue-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-200"
+                            placeholder="Your name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
                             Email Address

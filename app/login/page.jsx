@@ -28,7 +28,7 @@ const Login = () => {
             console.log("User logged in:", userCredential);
             setEmail("");
             setPassword("");
-            router.push('/');
+            router.push('/dashboard');
         }
     }, [userCredential]);
 

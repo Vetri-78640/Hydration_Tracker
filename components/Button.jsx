@@ -9,8 +9,9 @@ const buttonClasses = cva(
     {
         variants: {
             variant: {
-                primary: "bg-blue-300 text-neutral-950 border-blue-300/60",
-                secondary: "border-blue-300 text-white bg-transparent",
+                primary: "bg-blue-300 text-neutral-950 border-blue-300/60 transition-all duration-100 ease-in-out hover:delay-50 hover:bg-blue-200",
+
+                secondary: "border-blue-300 text-white bg-transparent transition-all duration-100 ease-in-out hover:delay-50 hover:bg-blue-100/15",
             },
         },
         defaultVariants: {
