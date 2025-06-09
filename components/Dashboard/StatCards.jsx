@@ -1,19 +1,16 @@
-import React from 'react'
+import React from 'react';
+import Card1 from './Cards/Card1';
+
+const cardClasses = "border border-blue-300/50 bg-blue-300/25 col-span-4 rounded-xl flex flex-col items-center p-4";
 
 const StatCards = () => {
     return (
         <>
-            <Card />
-            <Card />
-            <Card />
+            <Card1 className={cardClasses} />
+            <div className={cardClasses}>Card 2</div>
+            <div className={cardClasses}>Card 3</div>
         </>
-    )
-}
+    );
+};
 
-const Card = () => {
-    return <div className="p-4 bg-blue-300 col-span-4 rounded-xl">
-
-    </div>
-}
-
-export default StatCards
+export default StatCards;

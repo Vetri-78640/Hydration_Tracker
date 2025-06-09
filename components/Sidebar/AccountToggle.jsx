@@ -20,23 +20,26 @@ const AccountToggle = () => {
                     <span className="text-xs block text-white/75">{email}</span>
                 </div>
             </button>
-            <button
-                type="button"
-                onClick={closeSidebar}
-                aria-label="Close sidebar"
-                className="ml-2 p-1"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="size-6 text-white/75"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
+            <div className="lg:hidden">
+                <button
+                    type="button"
+                    onClick={closeSidebar}
+                    aria-label="Close sidebar"
+                    className="ml-2 p-1"
                 >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="size-6 text-white/75"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
         </div>
     );
 };

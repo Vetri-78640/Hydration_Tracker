@@ -17,8 +17,8 @@ export const TopBar = () => {
     };
 
     return (
-        <div className="border-b mb-4 mt-2 pb-4 px-4 border-blue-300/50">
-            <div className="flex items-center justify-between px-2 pt-2.5 pb-0.5">
+        <div className="border-b mb-4 pb-4 px-4 border-blue-300/50">
+            <div className="flex items-center justify-between px-2">
                 <div className="flex items-center gap-3">
                     <button
                         onClick={openSidebar}

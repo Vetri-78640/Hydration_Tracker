@@ -1,13 +1,14 @@
-import React from 'react'
-import {TopBar} from "@/components/Dashboard/TopBar";
-import Grid from "@/components/Dashboard/Grid";
+import React from "react";
+import { TopBar } from "@/components/Dashboard/TopBar";
 
-const Dashboard = () => {
+/* Just a layout shell */
+const Dashboard = ({ children }) => {
     return (
-        <div className="bg-blue-950 rounded-xl shadow h-[200vh]">
+        <div className="bg-blue-950/40 rounded-xl shadow p-4">
             <TopBar />
-            <Grid />
+            {children}
         </div>
-    )
-}
-export default Dashboard
+    );
+};
+
+export default Dashboard;
