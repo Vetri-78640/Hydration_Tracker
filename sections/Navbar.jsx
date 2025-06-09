@@ -5,6 +5,10 @@ import Button from "@/components/Button";
 import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { useUser } from "@/app/context/UserContext";
+import { signOut } from "firebase/auth";
+import { useRouter, usePathname } from "next/navigation";
+import { auth } from "@/app/firebase/config.js";
 
 const navLinks = [
     { label: 'Home', href: '#' },
@@ -14,6 +18,16 @@ const navLinks = [
 
 const Navbar = ({ className = "" }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const { email } = useUser();
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const handleLogout = async () => {
+        await signOut(auth);
+        if (pathname === "/dashboard") {
+            router.push("/");
+        }
+    };
 
     return (
         <>
@@ -83,12 +97,25 @@ const Navbar = ({ className = "" }) => {
                                     ></line>
                                 </svg>
 
-                                <Button variant="secondary" className="hidden md:inline-flex" href="/login">
-                                    Log In
-                                </Button>
-                                <Button variant="primary" className="hidden md:inline-flex" href="/sign-up">
-                                    Sign Up
-                                </Button>
+                                {email ? (
+                                    <>
+                                        <Button variant="secondary" className="hidden md:inline-flex" href="/dashboard">
+                                            Dashboard
+                                        </Button>
+                                        <Button variant="primary" className="hidden md:inline-flex" onClick={handleLogout}>
+                                            Logout
+                                        </Button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Button variant="secondary" className="hidden md:inline-flex" href="/login">
+                                            Log In
+                                        </Button>
+                                        <Button variant="primary" className="hidden md:inline-flex" href="/sign-up">
+                                            Sign Up
+                                        </Button>
+                                    </>
+                                )}
                             </div>
                         </div>
 
@@ -111,12 +138,25 @@ const Navbar = ({ className = "" }) => {
                                                 {link.label}
                                             </Link>
                                         ))}
-                                        <Button variant="secondary" href="/login">
-                                            Log In
-                                        </Button>
-                                        <Button variant="primary" href="/sign-up">
-                                            Sign Up
-                                        </Button>
+                                        {email ? (
+                                            <>
+                                                <Button variant="secondary" href="/dashboard">
+                                                    Dashboard
+                                                </Button>
+                                                <Button variant="primary" onClick={handleLogout}>
+                                                    Logout
+                                                </Button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Button variant="secondary" href="/login">
+                                                    Log In
+                                                </Button>
+                                                <Button variant="primary" href="/sign-up">
+                                                    Sign Up
+                                                </Button>
+                                            </>
+                                        )}
                                     </div>
                                 </motion.div>
                             )}

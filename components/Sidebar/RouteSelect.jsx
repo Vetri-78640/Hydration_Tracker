@@ -18,7 +18,7 @@ const RouteSelect = () => (
 
 const Route = ({ selected, Icon, title }) => (
     <button
-        className={`flex items-center justify-start gap-2 w-full rounded px-2 py-1.5 text-sm transition-[box-shadow,_background-color,_color] ${
+        className={`flex items-center justify-start gap-2 w-full rounded-xl px-2 py-1.5 text-sm transition-[box-shadow,_background-color,_color] ${
             selected
                 ? "bg-blue-200 text-black shadow"
                 : "hover:bg-blue-200/50 bg-transparent text-white/75 shadow-none"

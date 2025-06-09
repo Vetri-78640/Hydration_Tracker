@@ -11,7 +11,7 @@ const StatCards = () => {
 }
 
 const Card = () => {
-    return <div className="p-4 bg-blue-300 col-span-4 rounded">
+    return <div className="p-4 bg-blue-300 col-span-4 rounded-xl">
 
     </div>
 }
