@@ -29,14 +29,14 @@ export const TopBar = () => {
                     </button>
 
                     <div>
-            <span className="text-sm font-bold block">
-              Good day {name || "loading..."}!
-            </span>
-                        <span className="text-xs block text-white/75">{formatDate()}</span>
+                        <span className="text-sm font-bold block">
+                          Good day {name || "loading..."} !
+                        </span>
+                        <span className="text-xs block text-white/75">
+                            {formatDate()}
+                        </span>
                     </div>
                 </div>
-
-                <div>{/* Optional right side content here */}</div>
             </div>
         </div>
     );

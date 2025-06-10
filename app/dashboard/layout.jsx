@@ -5,6 +5,7 @@ import Dashboard from "@/components/Dashboard/Dashboard";
 import { useUser } from "@/app/context/UserContext";
 import { useRouter } from "next/navigation";
 import { SidebarProvider, useSidebar } from "@/app/context/SidebarContext";
+import { UserSettingsProvider } from "@/app/context/UserSettings";
 
 const Content = ({ children }) => {
     const { sidebarOpen } = useSidebar();
@@ -46,7 +47,9 @@ const Layout = ({ children }) => {
 
     return (
         <SidebarProvider>
-            <Content>{children}</Content>
+            <UserSettingsProvider>
+                <Content>{children}</Content>
+            </UserSettingsProvider>
         </SidebarProvider>
     );
 };

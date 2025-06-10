@@ -4,7 +4,7 @@ import { TopBar } from "@/components/Dashboard/TopBar";
 /* Just a layout shell */
 const Dashboard = ({ children }) => {
     return (
-        <div className="bg-blue-950/40 rounded-xl shadow p-4">
+        <div className="bg-blue-950/40 rounded-xl shadow p-4 min-h-screen">
             <TopBar />
             {children}
         </div>

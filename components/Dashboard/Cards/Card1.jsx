@@ -1,16 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FiRefreshCw } from 'react-icons/fi';
-
-const PRESET_AMOUNTS = [100, 250, 500];
-const MAX_CAPACITY = 2000;
+import { useUserSettings } from '@/app/context/UserSettings';
+import { useUser } from '@/app/context/UserContext';
+import { db } from '@/app/firebase/config';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 const Card1 = ({ className = "" }) => {
+    const { dailyGoal, buttonAmounts } = useUserSettings();
+    const { uid } = useUser();
     const [consumed, setConsumed] = useState(0);
     const [customAmount, setCustomAmount] = useState('');
+    const initialLoad = useRef(true);
+
+    // Load consumed from Firestore on mount/uid change
+    useEffect(() => {
+        const fetchConsumed = async () => {
+            if (!uid) return;
+            try {
+                const docRef = doc(db, 'userSettings', uid);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if (typeof data.consumed === 'number') setConsumed(data.consumed);
+                }
+            } catch (error) {
+                console.error('Error loading consumed from Firestore:', error);
+            } finally {
+                initialLoad.current = false;
+            }
+        };
+        fetchConsumed();
+    }, [uid]);
+
+    // Save consumed to Firestore whenever it changes, but not on initial load
+    useEffect(() => {
+        if (initialLoad.current) return;
+        const saveConsumed = async () => {
+            if (!uid) return;
+            try {
+                await setDoc(doc(db, 'userSettings', uid), { consumed }, { merge: true });
+            } catch (error) {
+                console.error('Error saving consumed to Firestore:', error);
+            }
+        };
+        saveConsumed();
+    }, [consumed, uid]);
 
     const handleDrink = (amount) => {
         let newConsumed = consumed + amount;
-        if (newConsumed > MAX_CAPACITY) newConsumed = MAX_CAPACITY;
+        if (newConsumed > dailyGoal) newConsumed = dailyGoal;
         setConsumed(newConsumed);
     };
     const handleCustomDrink = () => {
@@ -23,12 +61,12 @@ const Card1 = ({ className = "" }) => {
     const handleReset = () => {
         setConsumed(0);
     };
-    const progress = Math.min(100, (consumed / MAX_CAPACITY) * 100);
+    const progress = Math.min(100, (consumed / dailyGoal) * 100);
 
     return (
         <div className={className}>
-            <div className="flex flex-wrap justify-center gap-4 mb-6">
-                {PRESET_AMOUNTS.map((amt) => (
+            <div className="flex flex-wrap justify-center gap-2 mb-4">
+                {buttonAmounts.map((amt) => (
                     <button
                         key={amt}
                         onClick={() => handleDrink(amt)}
@@ -41,11 +79,11 @@ const Card1 = ({ className = "" }) => {
                     <input
                         type="number"
                         min="1"
-                        max={MAX_CAPACITY}
+                        max={dailyGoal}
                         value={customAmount}
                         onChange={e => setCustomAmount(e.target.value)}
                         placeholder="Amount (ml)"
-                        className="w-30 px-3 py-3 rounded-xl border border-blue-600/50 bg-blue-300 text-neutral-950 focus:outline-none focus:ring-1 focus:ring-blue-600 text-center"
+                        className="w-32 px-3 py-3 rounded-xl border border-blue-600/50 bg-blue-300 text-neutral-950 focus:outline-none focus:ring-1 focus:ring-blue-600 text-center"
                     />
                     <button
                         onClick={handleCustomDrink}
@@ -56,7 +94,7 @@ const Card1 = ({ className = "" }) => {
                     </button>
                     <button
                         onClick={handleReset}
-                        className="flex items-center justify-center px-3 py-3 border border-red-400 rounded-xl bg-white/85 text-red-400 hover:bg-red-100 hover:scale-105 active:scale-95 focus:outline-none focus:ring-1 focus:ring-red-500 transition-all duration-200 shadow-md hover:shadow-lg ml-2"
+                        className="flex items-center justify-center px-3 py-3 border border-red-400 rounded-xl bg-white/85 text-red-400 hover:bg-red-100 hover:scale-105 active:scale-95 focus:outline-none focus:ring-1 focus:ring-red-500 transition-all duration-200 shadow-md hover:shadow-lg"
                         aria-label="Reset"
                     >
                         <FiRefreshCw className="size-6" />
@@ -66,12 +104,15 @@ const Card1 = ({ className = "" }) => {
             {/* Progress Bar */}
             <div className="max-w-xs w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner mb-2">
                 <div
-                    className="h-full bg-gradient-to-r from-sky-400 via-sky-500 to-blue-500 transition-all duration-700 ease-out shadow-sm"
-                    style={{ width: `${progress}%` }}
+                    className="h-full transition-all duration-700 ease-out shadow-sm"
+                    style={{
+                        width: `${progress}%`,
+                        backgroundColor: `hsl(${progress * 1.2}, 90%, 50%)` // 0% = 0° (red), 50% = 60° (yellow), 100% = 120° (green)
+                    }}
                 ></div>
             </div>
-            <div className="text-lg text-white/75 mt-1">
-                {consumed}ml / {MAX_CAPACITY}ml ({Math.round(progress)}%)
+            <div className="text-lg text-white/75">
+                {consumed}ml / {dailyGoal}ml ({Math.round(progress)}%)
             </div>
         </div>
     );

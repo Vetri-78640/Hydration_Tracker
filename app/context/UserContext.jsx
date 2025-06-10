@@ -3,15 +3,16 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "@/app/firebase/config.js";
 import { onAuthStateChanged } from "firebase/auth";
 
-const UserContext = createContext({ name: null, email: null });
+const UserContext = createContext({ uid: null, name: null, email: null });
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({ name: null, email: null });
+  const [user, setUser] = useState({ uid: null, name: null, email: null });
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
         setUser({
+          uid: firebaseUser.uid,
           name: firebaseUser.displayName || "",
           email: firebaseUser.email || "",
         });

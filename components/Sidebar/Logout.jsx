@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import Button from "@/components/Button";
+import { FiLogOut } from "react-icons/fi";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { auth } from "@/app/firebase/config.js";
@@ -12,11 +12,15 @@ const Logout = () => {
         router.push("/");
     };
     return (
-        <div className="flex sticky top-[calc(100vh_-_48px_-_16px)] flex-col border-t px-2 border-blue-300/50 justify-end text-xs">
+        <div className="flex sticky top-[calc(100vh_-_48px_-_16px)] flex-col border-t px-2 border-blue-300/50 justify-end">
             <div className="flex items-center justify-center mt-4">
-                <Button onClick={handleLogout}>
-                    Logout
-                </Button>
+                <button
+                    onClick={handleLogout}
+                    className="flex items-center gap-4 px-3 py-2 rounded  hover:bg-blue-200/50 text-white transition-colors"
+                >
+                    <span>Logout</span>
+                    <FiLogOut className="text-xl" />
+                </button>
             </div>
         </div>
     );

@@ -18,6 +18,7 @@ const Signup = () => {
         const result = await createUserWithEmailAndPassword(email, password);
         if (result && result.user) {
             await updateProfile(result.user, { displayName: name });
+            await result.user.reload() //makes sure name is available instantly
         }
     };
 
