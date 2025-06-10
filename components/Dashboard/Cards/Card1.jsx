@@ -1,50 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { FiRefreshCw } from 'react-icons/fi';
 import { useUserSettings } from '@/app/context/UserSettings';
-import { useUser } from '@/app/context/UserContext';
-import { db } from '@/app/firebase/config';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 const Card1 = ({ className = "" }) => {
-    const { dailyGoal, buttonAmounts } = useUserSettings();
-    const { uid } = useUser();
-    const [consumed, setConsumed] = useState(0);
+    const { dailyGoal, buttonAmounts, consumed, setConsumed } = useUserSettings();
     const [customAmount, setCustomAmount] = useState('');
-    const initialLoad = useRef(true);
-
-    // Load consumed from Firestore on mount/uid change
-    useEffect(() => {
-        const fetchConsumed = async () => {
-            if (!uid) return;
-            try {
-                const docRef = doc(db, 'userSettings', uid);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    if (typeof data.consumed === 'number') setConsumed(data.consumed);
-                }
-            } catch (error) {
-                console.error('Error loading consumed from Firestore:', error);
-            } finally {
-                initialLoad.current = false;
-            }
-        };
-        fetchConsumed();
-    }, [uid]);
-
-    // Save consumed to Firestore whenever it changes, but not on initial load
-    useEffect(() => {
-        if (initialLoad.current) return;
-        const saveConsumed = async () => {
-            if (!uid) return;
-            try {
-                await setDoc(doc(db, 'userSettings', uid), { consumed }, { merge: true });
-            } catch (error) {
-                console.error('Error saving consumed to Firestore:', error);
-            }
-        };
-        saveConsumed();
-    }, [consumed, uid]);
 
     const handleDrink = (amount) => {
         let newConsumed = consumed + amount;
@@ -64,7 +24,7 @@ const Card1 = ({ className = "" }) => {
     const progress = Math.min(100, (consumed / dailyGoal) * 100);
 
     return (
-        <div className={className}>
+        <main className={className}>
             <div className="flex flex-wrap justify-center gap-2 mb-4">
                 {buttonAmounts.map((amt) => (
                     <button
@@ -114,7 +74,7 @@ const Card1 = ({ className = "" }) => {
             <div className="text-lg text-white/75">
                 {consumed}ml / {dailyGoal}ml ({Math.round(progress)}%)
             </div>
-        </div>
+        </main>
     );
 };
 

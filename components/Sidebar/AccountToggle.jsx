@@ -16,7 +16,7 @@ const AccountToggle = () => {
                     className="size-9 rounded-full shrink-0 bg-blue-950 shadow"
                 />
                 <div className="text-start ml-2">
-                    <span className="text-sm font-bold block">{name || "loading..."}</span>
+                    <span className="text-blue-300 text-sm font-bold block">{name || "loading..."}</span>
                     <span className="text-xs block text-white/75">{email}</span>
                 </div>
             </button>

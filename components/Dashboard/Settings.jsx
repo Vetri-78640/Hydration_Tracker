@@ -24,9 +24,9 @@ const Settings = () => {
     };
 
     return (
-        <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-3">
+        <main className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-3">
             <div className="col-span-4">
-                <h1 className="text-2xl font-bold text-white mb-4">Settings</h1>
+                <h1 className="text-2xl font-bold text-white">Settings</h1>
                 <p className="font-semibold text-white/75 mb-6">Update your preferences.</p>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-6">
@@ -37,7 +37,7 @@ const Settings = () => {
                             id="daily-goal"
                             type="number"
                             min="0"
-                            className="w-full p-2 rounded bg-blue-300 text-neutral-950 border border-blue-600/50 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                            className="w-full p-2 rounded-xl bg-blue-300 text-neutral-950 border border-blue-600/50 focus:outline-none focus:ring-1 focus:ring-blue-600"
                             value={localDailyGoal}
                             onChange={e => setLocalDailyGoal(Number(e.target.value))}
                         />
@@ -52,7 +52,7 @@ const Settings = () => {
                                     key={idx}
                                     type="number"
                                     min="0"
-                                    className="w-full p-2 rounded bg-blue-300 text-neutral-950 border border-blue-600/50 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                    className="w-full p-2 rounded-xl bg-blue-300 text-neutral-950 border border-blue-600/50 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                     value={amount}
                                     onChange={e => handleButtonAmountChange(idx, e.target.value)}
                                 />
@@ -62,7 +62,7 @@ const Settings = () => {
                     <Button type="submit">Save</Button>
                 </form>
             </div>
-        </div>
+        </main>
     );
 };
 

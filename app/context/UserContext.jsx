@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
           email: firebaseUser.email || "",
         });
       } else {
-        setUser({ name: null, email: null });
+        setUser({ name: null, email: null,uid: null });
       }
     });
     return () => unsubscribe();

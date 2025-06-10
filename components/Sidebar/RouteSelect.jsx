@@ -4,8 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
     FiHome,
-    FiBarChart2,
-    FiUsers,
     FiBookOpen,
     FiSettings,
 } from "react-icons/fi";
@@ -13,8 +11,6 @@ import {
 // Define your routes in one place
 const routes = [
     { title: "Dashboard", href: "/dashboard", icon: FiHome },
-    { title: "Track", href: "/dashboard/track", icon: FiUsers },
-    { title: "Progress", href: "/dashboard/progress", icon: FiBarChart2 },
     { title: "Facts", href: "/dashboard/facts", icon: FiBookOpen },
     { title: "Settings", href: "/dashboard/settings", icon: FiSettings },
 ];
