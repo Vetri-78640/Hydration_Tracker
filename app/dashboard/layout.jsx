@@ -6,6 +6,8 @@ import { useUser } from "@/app/context/UserContext";
 import { useRouter } from "next/navigation";
 import { SidebarProvider, useSidebar } from "@/app/context/SidebarContext";
 import { UserSettingsProvider } from "@/app/context/UserSettings";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Content = ({ children }) => {
     const { sidebarOpen } = useSidebar();
@@ -27,10 +29,22 @@ const Content = ({ children }) => {
                 <Sidebar />
             </div>
 
-            {/* Main content area */}
             <div className="lg:pl-[220px] p-3">
                 <Dashboard>{children}</Dashboard>
             </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
         </main>
     );
 };

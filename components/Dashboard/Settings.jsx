@@ -1,67 +1,74 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import Button from "@/components/Button";
+import { toast } from "react-toastify";
 import { useUserSettings } from "@/app/context/UserSettings";
 
 const Settings = () => {
     const { dailyGoal, buttonAmounts, updateSettings } = useUserSettings();
-    const [localDailyGoal, setLocalDailyGoal] = useState(dailyGoal);
-    const [localButtonAmounts, setLocalButtonAmounts] = useState([...buttonAmounts]);
+
+    const [localGoal, setLocalGoal] = useState(dailyGoal);
+    const [localButtons, setLocalButtons] = useState([...buttonAmounts]);
 
     useEffect(() => {
-        setLocalDailyGoal(dailyGoal);
-        setLocalButtonAmounts([...buttonAmounts]);
+        setLocalGoal(dailyGoal);
+        setLocalButtons([...buttonAmounts]);
     }, [dailyGoal, buttonAmounts]);
 
-    const handleButtonAmountChange = (index, value) => {
-        const newAmounts = [...localButtonAmounts];
-        newAmounts[index] = Number(value);
-        setLocalButtonAmounts(newAmounts);
+    const handleButtonAmount = (idx, val) => {
+        const copy = [...localButtons];
+        copy[idx] = Number(val);
+        setLocalButtons(copy);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateSettings(localDailyGoal, localButtonAmounts);
+        updateSettings(localGoal, localButtons);
+        toast.success("Settings saved!");
     };
 
     return (
         <main className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-3">
-            <div className="col-span-4">
-                <h1 className="text-2xl font-bold text-white">Settings</h1>
+            <section className="col-span-4">
+                <h1 className="text-2xl font-bold text-white mb-1">Settings</h1>
                 <p className="font-semibold text-white/75 mb-6">Update your preferences.</p>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-6">
-                        <label className="block text-white font-semibold mb-2" htmlFor="daily-goal">
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                        <label htmlFor="goal" className="block mb-2 text-white font-semibold">
                             Daily Water Goal (ml)
                         </label>
                         <input
-                            id="daily-goal"
+                            id="goal"
                             type="number"
                             min="0"
                             className="w-full p-2 rounded-xl bg-blue-300 text-neutral-950 border border-blue-600/50 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                            value={localDailyGoal}
-                            onChange={e => setLocalDailyGoal(Number(e.target.value))}
+                            value={localGoal}
+                            onChange={(e) => setLocalGoal(Number(e.target.value))}
                         />
                     </div>
-                    <div className="mb-6">
-                        <label className="block text-white font-semibold mb-2">
+
+                    <div>
+                        <label className="block mb-2 text-white font-semibold">
                             Quick Add Button Amounts (ml)
                         </label>
                         <div className="flex gap-2">
-                            {localButtonAmounts.map((amount, idx) => (
+                            {localButtons.map((amt, idx) => (
                                 <input
                                     key={idx}
                                     type="number"
                                     min="0"
                                     className="w-full p-2 rounded-xl bg-blue-300 text-neutral-950 border border-blue-600/50 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                    value={amount}
-                                    onChange={e => handleButtonAmountChange(idx, e.target.value)}
+                                    value={amt}
+                                    onChange={(e) => handleButtonAmount(idx, e.target.value)}
                                 />
                             ))}
                         </div>
                     </div>
+
                     <Button type="submit">Save</Button>
                 </form>
-            </div>
+            </section>
         </main>
     );
 };
