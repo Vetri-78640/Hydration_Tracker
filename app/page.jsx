@@ -61,7 +61,7 @@ const Page = () => {
             <div ref={introductionRef}>
                 <Introduction />
             </div>
-            <WaterAnimation/>
+            {/*<WaterAnimation/>*/}
             <Features />
             <CallToAction />
             <GetStarted />
