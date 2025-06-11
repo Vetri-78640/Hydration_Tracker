@@ -6,7 +6,7 @@ import Logout from "@/components/Sidebar/Logout";
 export const Sidebar = () => {
     return (
         <div>
-            <div className="overflow-y-scroll sticky top-4 h-[calc(100vh-32px-48px)] scrollbar-hidden">
+            <div className="overflow-y-scroll sticky top-4 h-[calc(100vh-32px-14px)] scrollbar-hidden">
                 <AccountToggle />
                 <RouteSelect />
                 <Logout />

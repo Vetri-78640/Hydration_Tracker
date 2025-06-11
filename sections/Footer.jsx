@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const footerLinks = [
-    {href: '#1', label: 'Contact'},
-    {href: '#2', label: 'About'},
-    {href: '#3', label: 'Terms and Conditions'},
+    {href: '/about#about', label: 'About'},
+    {href: '/about#contact', label: 'Contact'},
+    {href: '/about#terms', label: 'Terms and Conditions'},
 ];
 
 const Footer = () => {
@@ -27,8 +27,8 @@ const Footer = () => {
                         <nav className="flex gap-6">
                             {footerLinks.map(link => (
                                 <Link href={link.href}
-                                   key={link.href}
-                                   className="text-white/70
+                                      key={link.href}
+                                      className="text-white/70
                                     hover:text-blue-300 transition-colors duration-300">
                                     {link.label}
                                 </Link>

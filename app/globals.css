@@ -23,3 +23,9 @@ body {
 .scrollbar-hidden::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
 }
+
+.masonry-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

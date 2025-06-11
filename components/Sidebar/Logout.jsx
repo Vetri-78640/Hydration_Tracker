@@ -12,8 +12,8 @@ const Logout = () => {
         router.push("/");
     };
     return (
-        <div className="flex sticky top-[calc(100vh_-_48px_-_16px)] flex-col border-t px-2 border-blue-300/50 justify-end">
-            <div className="flex items-center justify-center mt-4">
+        <div className="flex sticky top-[calc(100vh-48px)] flex-col border-t px-2 border-blue-300/50">
+            <div className="flex justify-center mt-4">
                 <button
                     onClick={handleLogout}
                     className="flex items-center gap-4 px-3 py-2 rounded  hover:bg-blue-200/50 text-white transition-colors"

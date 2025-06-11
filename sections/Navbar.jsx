@@ -10,17 +10,27 @@ import { signOut } from "firebase/auth";
 import { useRouter, usePathname } from "next/navigation";
 import { auth } from "@/app/firebase/config.js";
 
-const navLinks = [
-    { label: 'Home', href: '#' },
-    { label: 'Features', href: '#features' },
-    { label: 'Get Started', href: '#getstarted' },
-];
-
 const Navbar = ({ className = "" }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { email } = useUser();
     const router = useRouter();
     const pathname = usePathname();
+
+    const isLandingPage = pathname === '/';
+    const navLinks = [
+        {
+            label: 'Home',
+            href: isLandingPage ? '#' : '/'
+        },
+        {
+            label: 'Features',
+            href: isLandingPage ? '#features' : '/#features'
+        },
+        {
+            label: 'Get Started',
+            href: isLandingPage ? '#getstarted' : '/#getstarted'
+        },
+    ];
 
     const handleLogout = async () => {
         await signOut(auth);
@@ -36,13 +46,15 @@ const Navbar = ({ className = "" }) => {
                     <div className="border border-blue-300/60 bg-[#050521]/70 backdrop-blur rounded-[27px] md:rounded-full">
                         <div className="grid grid-cols-2 lg:grid-cols-3 px-4 p-2 md:pr-2 items-center">
                             <div>
-                                <Image
-                                    src="/assets/images/icon.svg"
-                                    alt="logo"
-                                    width={16}
-                                    height={16}
-                                    className="h-9 w-auto md:h-auto md:max-h-11"
-                                />
+                                <Link href="/">
+                                    <Image
+                                        src="/assets/images/icon.svg"
+                                        alt="logo"
+                                        width={16}
+                                        height={16}
+                                        className="h-9 w-auto md:h-auto md:max-h-11 cursor-pointer"
+                                    />
+                                </Link>
                             </div>
 
                             <div className="hidden lg:flex justify-center items-center">

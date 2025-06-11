@@ -2,7 +2,7 @@ import { twMerge } from 'tailwind-merge'
 
 const FeatureCard = ({ title, description, image, className }) => {
     return (
-        <div className={twMerge("bg-blue-950/20 p-4 rounded-3xl", className)}
+        <div className={twMerge("bg-blue-950/20 px-4 py-6 rounded-3xl", className)}
              style={{boxShadow: "0 0 10px #64b5f6, 0 0 20px #64b5f6"}}
         >
             <div className="aspect-video flex justify-center items-center">
