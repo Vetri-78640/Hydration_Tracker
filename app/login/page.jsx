@@ -7,6 +7,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -21,6 +23,18 @@ const Login = () => {
 
     const handleLogin = () => {
         signInWithEmailAndPassword(email, password);
+    };
+
+    const handleGoogleSignIn = async () => {
+        const provider = new GoogleAuthProvider();
+        try {
+            await signInWithPopup(auth, provider);
+            toast.success("Signed in with Google");
+            router.push("/dashboard");
+        } catch (err) {
+            console.error("Google Sign-In error:", err.message);
+            toast.error("Google Sign-In failed");
+        }
     };
 
     useEffect(() => {
@@ -81,6 +95,21 @@ const Login = () => {
 
                     <Button onClick={handleLogin} disabled={loading}>
                         {loading ? "Logging In..." : "Log In"}
+                    </Button>
+
+                    <div className="flex items-center gap-3 text-white/60 text-sm mt-1 mb-2">
+                        <div className="flex-1 h-px bg-white/20" />
+                        <span>or</span>
+                        <div className="flex-1 h-px bg-white/20" />
+                    </div>
+
+                    {/* Google Sign-In Button */}
+                    <Button
+                        onClick={handleGoogleSignIn}
+                        variant="secondary"
+                    >
+                        <FaGoogle className="text-blue-300 size-4 mr-2" />
+                        Continue with Google
                     </Button>
                 </form>
 

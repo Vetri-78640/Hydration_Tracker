@@ -4,13 +4,17 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "@/app/firebase/config.js";
 import Button from "@/components/Button";
 import Link from "next/link";
-import { toast } from "react-toastify";
-import { updateProfile } from "firebase/auth";
+import { toast, ToastContainer } from "react-toastify";
+import { updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useRouter } from "next/navigation";
+import { FaGoogle } from "react-icons/fa";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
 
     const [
         createUserWithEmailAndPassword,
@@ -27,15 +31,25 @@ const Signup = () => {
         }
     };
 
+    const handleGoogleSignUp = async () => {
+        const provider = new GoogleAuthProvider();
+        try {
+            await signInWithPopup(auth, provider);
+            toast.success("Signed up with Google");
+            router.push("/dashboard");
+        } catch (err) {
+            console.error("Google Sign-Up error:", err.message);
+            toast.error("Google Sign-Up failed");
+        }
+    };
+
     useEffect(() => {
         if (userCredential) {
-            // reset form
             setName("");
             setEmail("");
             setPassword("");
-
-            // success toast
             toast.success("Account created! You can now log in.");
+            router.push("/dashboard");
         }
     }, [userCredential]);
 
@@ -52,6 +66,7 @@ const Signup = () => {
 
     return (
         <main className="min-h-screen flex items-center justify-center bg-[#050521] px-3">
+            <ToastContainer />
             <div
                 className="bg-blue-950/20 p-8 rounded-2xl shadow-lg w-full max-w-md"
                 style={{ boxShadow: "0 0 10px #64b5f6, 0 0 20px #64b5f6, 0 0 40px #64b5f6" }}
@@ -106,6 +121,17 @@ const Signup = () => {
 
                     <Button onClick={handleSignUp} disabled={loading}>
                         {loading ? "Signing Up..." : "Sign Up"}
+                    </Button>
+
+                    <div className="flex items-center gap-3 text-white/60 text-sm mt-1 mb-2">
+                        <div className="flex-1 h-px bg-white/20" />
+                        <span>or</span>
+                        <div className="flex-1 h-px bg-white/20" />
+                    </div>
+
+                    <Button onClick={handleGoogleSignUp} variant="secondary">
+                        <FaGoogle className="text-blue-300 size-4 mr-2" />
+                        Continue with Google
                     </Button>
                 </form>
 
