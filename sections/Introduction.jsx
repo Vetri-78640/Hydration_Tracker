@@ -38,7 +38,7 @@ const Introduction = () => {
                             animate={{opacity: isComplete ? 1 : 0}}
                             transition={{duration: 1}}
                             >
-                            To keep your body sharp and your mind clear remember to...
+                            To keep your body sharp and your mind clear remember to stay hydrated
                         </motion.span>
                     </div>
                 </div>
