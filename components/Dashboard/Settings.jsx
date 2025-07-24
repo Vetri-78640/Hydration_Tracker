@@ -7,14 +7,20 @@ import { useUserSettings } from "@/app/context/UserSettings";
 const Settings = () => {
     const { dailyGoal, buttonAmounts, updateSettings } = useUserSettings();
 
+    // to edit and store local value before pushing to firestore
     const [localGoal, setLocalGoal] = useState(dailyGoal);
+
+    // spreading it coz it's an array of value amount
     const [localButtons, setLocalButtons] = useState([...buttonAmounts]);
 
+
+    // change local values whenever firestore values change to keep it in sync
     useEffect(() => {
         setLocalGoal(dailyGoal);
         setLocalButtons([...buttonAmounts]);
     }, [dailyGoal, buttonAmounts]);
 
+    // only edit the copy of the local button - good practice to edit immutably
     const handleButtonAmount = (idx, val) => {
         const copy = [...localButtons];
         copy[idx] = Number(val);

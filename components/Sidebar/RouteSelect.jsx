@@ -7,7 +7,6 @@ import {
     FiSettings,
 } from "react-icons/fi";
 
-// Define your routes in one place
 const routes = [
     { title: "Dashboard", href: "/dashboard", icon: FiHome },
     { title: "Settings", href: "/dashboard/settings", icon: FiSettings },
@@ -15,11 +14,13 @@ const routes = [
 
 const RouteSelect = () => {
     const pathname = usePathname();
+    // just gets the current path
 
     return (
         <div>
             {routes.map(({ title, href, icon: Icon }) => {
                 const isSelected = pathname === href;
+                // this checks if the current path matches selected path - for UI
                 return (
                     <Link key={title} href={href}>
                         <button

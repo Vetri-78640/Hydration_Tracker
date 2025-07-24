@@ -5,7 +5,7 @@ import { useUserSettings } from "@/app/context/UserSettings";
 const Card5 = ({ className }) => {
     const { dailyGoal } = useUserSettings();
 
-    const intervalCount = 8;
+    const intervalCount = 8; // to get an interval of 3 hours as 24/8 = 3
     const perInterval = Math.ceil(dailyGoal / intervalCount);
     const hours = 24 / intervalCount;
 

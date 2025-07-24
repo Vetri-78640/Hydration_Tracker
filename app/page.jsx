@@ -9,7 +9,6 @@ import Introduction from "@/sections/Introduction";
 import GetStarted from "@/sections/GetStarted";
 import CallToAction from "@/sections/CallToAction";
 import Footer from "@/sections/Footer";
-import WaterAnimation from "@/sections/WaterAnimation";
 
 const Page = () => {
     const showcaseRef = useRef(null);
@@ -61,7 +60,6 @@ const Page = () => {
             <div ref={introductionRef}>
                 <Introduction />
             </div>
-            {/*<WaterAnimation/>*/}
             <Features />
             <CallToAction />
             <GetStarted />

@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 const buttonClasses = cva(
     "inline-flex items-center justify-center border h-12 rounded-full px-6 font-medium cursor-pointer",
+    // Tis is a library that lets you define reusable, customizable component classes with variants
     {
         variants: {
             variant: {
@@ -22,6 +23,7 @@ const buttonClasses = cva(
 
 const Button = ({ children, className, variant, href, onClick }) => {
     const mergedClasses = twMerge(buttonClasses({ variant }), "cursor-pointer", className);
+    // Tis a utility from the tailwind-merge library that safely merges multiple tailwind class strings
 
     if (href) {
         return (

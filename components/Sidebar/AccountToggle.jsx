@@ -9,9 +9,9 @@ const AccountToggle = () => {
 
     return (
         <div className="border-b mb-4 mt-2 pb-4 border-blue-300/50 flex items-center justify-between">
-            <button className="flex p-0.5 hover:bg-blue-200/50 rounded transition-colors relative gap-2 w-full items-center">
+            <div className="flex p-0.5 hover:bg-blue-200/50 rounded transition-colors relative gap-2 w-full items-center">
                 <img
-                    src="https://api.dicebear.com/9.x/adventurer/svg?seed=Eden"
+                    src="https://api.dicebear.com/9.x/thumbs/svg?seed=Sawyer"
                     alt="avatar"
                     className="size-9 rounded-full shrink-0 bg-blue-950 shadow"
                 />
@@ -19,7 +19,7 @@ const AccountToggle = () => {
                     <span className="text-blue-300 text-sm font-bold block">{name || "loading..."}</span>
                     <span className="text-xs block text-white/75">{email}</span>
                 </div>
-            </button>
+            </div>
             <div className="lg:hidden">
                 <button
                     type="button"

@@ -6,11 +6,16 @@ const Card1 = ({ className = "" }) => {
     const { dailyGoal, buttonAmounts, consumed, setConsumed } = useUserSettings();
     const [customAmount, setCustomAmount] = useState('');
 
+
     const handleDrink = (amount) => {
         let newConsumed = consumed + amount;
-        if (newConsumed > dailyGoal) newConsumed = dailyGoal;
+        if (newConsumed > dailyGoal){
+            newConsumed = dailyGoal
+        }
         setConsumed(newConsumed);
     };
+
+    // for user inputs
     const handleCustomDrink = () => {
         const amt = parseInt(customAmount, 10);
         if (!isNaN(amt) && amt > 0) {
@@ -62,12 +67,12 @@ const Card1 = ({ className = "" }) => {
                 </div>
             </div>
             {/* Progress Bar */}
-            <div className="max-w-xs w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner mb-2">
+            <div className="max-w-xs w-full bg-gray-200 rounded-full h-4 overflow-hidden mb-2">
                 <div
-                    className="h-full transition-all duration-700 ease-out shadow-sm"
+                    className="h-full transition-all duration-700 ease-out"
                     style={{
                         width: `${progress}%`,
-                        backgroundColor: `hsl(${progress * 1.2}, 90%, 50%)` // 0% = 0° (red), 50% = 60° (yellow), 100% = 120° (green)
+                        backgroundColor: `hsl(${progress * 1.2}, 80%, 50%)` // 0% = 0° (red), 50% = 60° (yellow), 100% = 120° (green)
                     }}
                 ></div>
             </div>

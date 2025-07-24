@@ -10,13 +10,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Content = ({ children }) => {
-    const { sidebarOpen } = useSidebar();
+    const { sidebarOpen , closeSidebar } = useSidebar();
 
     return (
         <main>
             {/* Mobile sidebar */}
             <div
-                className={`block lg:hidden fixed top-0 left-0 h-full w-[220px] z-30 p-4 bg-[#050521] pt-6
+                className={`block lg:hidden fixed top-0 left-0 h-full w-[260px] z-30 p-4 bg-[#050521] pt-6
           transform transition-transform duration-300 ease-in-out
           ${sidebarOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}
                 style={{ transitionProperty: "transform, opacity" }}
@@ -57,6 +57,7 @@ const Layout = ({ children }) => {
         if (email === null) router.replace("/login");
     }, [email, router]);
 
+    // In case email does not exist, return  null so there is no flash of the UI during redirect
     if (email === null) return null;
 
     return (

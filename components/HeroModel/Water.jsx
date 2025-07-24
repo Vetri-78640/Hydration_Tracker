@@ -6,7 +6,6 @@ License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 Source: https://sketchfab.com/3d-models/water-splash-spiral-282e1a5d84f5472281e72f35987775e7
 Title: Water Splash Spiral
 */
-
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
 

@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({ uid: null, name: null, email: null });
 
   useEffect(() => {
+    // called it unsubscribe so it can be called later to unmount
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
         setUser({

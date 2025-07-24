@@ -11,13 +11,17 @@ export const UserSettingsProvider = ({ children }) => {
     const [buttonAmounts, setButtonAmounts] = useState([100, 200, 500]);
     const [consumed, setConsumed] = useState(0);
     const initialLoad = useRef(true);
+    // A ref to track whether it’s the first time the component loads - used to prevent immediate sync on mount.
 
-    // Load settings and consumed from Firestore when uid changes
+    // load settings and consumed from Firestore when uid changes
     useEffect(() => {
         const fetchSettings = async () => {
             if (!uid) return;
             try {
+                // reference to where it is in firestore
                 const docRef = doc(db, "userSettings", uid);
+
+                // gets values based on the reference
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
                     const data = docSnap.data();
@@ -29,6 +33,7 @@ export const UserSettingsProvider = ({ children }) => {
                 console.error("Error loading user settings from Firestore:", error);
             } finally {
                 initialLoad.current = false;
+                // so future changes to consumed will sync to firestore
             }
         };
         fetchSettings();
@@ -48,6 +53,7 @@ export const UserSettingsProvider = ({ children }) => {
         saveConsumed();
     }, [consumed, uid]);
 
+    // updating preferences in dashboard
     const updateSettings = async (newDailyGoal, newButtonAmounts) => {
         setDailyGoal(newDailyGoal);
         setButtonAmounts(newButtonAmounts);

@@ -37,6 +37,8 @@ const Login = () => {
         }
     };
 
+
+    // to reset  values
     useEffect(() => {
         if (userCredential) {
             console.log("User logged in:", userCredential);

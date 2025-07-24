@@ -84,7 +84,7 @@ const Navbar = ({ className = "" }) => {
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                     onClick={() => setIsOpen(!isOpen)}
-                                    className="feather feather-menu md:hidden"
+                                    className="md:hidden"
                                 >
                                     <line
                                         x1="3"

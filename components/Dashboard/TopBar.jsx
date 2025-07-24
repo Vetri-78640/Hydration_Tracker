@@ -20,6 +20,7 @@ export const TopBar = () => {
 
     // Hydration status logic
     const progress = dailyGoal > 0 ? (consumed / dailyGoal) * 100 : 0;
+    // default values for < 30
     let status = "You're Dehydrated !";
     let statusColor = "text-red-400";
     if (progress > 90) {

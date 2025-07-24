@@ -19,4 +19,5 @@ export const SidebarProvider = ({ children }) => {
     );
 };
 
+// to access variables and functions easier via a custom hook
 export const useSidebar = () => useContext(SidebarContext);

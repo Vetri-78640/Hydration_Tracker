@@ -7,21 +7,23 @@ const Card3 = ({ className }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // ⬇️ Helper: simple suggestion based on °C
-    const getSuggestion = (tempC) => {
-        if (tempC >= 35) return "It’s extremely hot - drink extra water!";
-        if (tempC >= 28) return "Stay hydrated and wear light clothes.";
-        if (tempC >= 20) return "Perfect weather. Keep sipping regularly.";
-        if (tempC >= 10) return "A bit cool - remember to hydrate still.";
+    const getSuggestion = (temp) => {
+        if (temp >= 35) return "It’s extremely hot - drink extra water!";
+        if (temp >= 28) return "Stay hydrated and wear light clothes.";
+        if (temp >= 20) return "Perfect weather. Keep sipping regularly.";
+        if (temp >= 10) return "A bit cool - remember to hydrate still.";
         return "Cold outside - warm drinks count toward your goal!";
     };
 
+    // This is to check if browser supports sharing location
     useEffect(() => {
         if (!navigator.geolocation) {
             setError("Geolocation not supported.");
             setLoading(false);
             return;
         }
+
+    // This triggers location request - the syntax is success callback, error callback
 
         navigator.geolocation.getCurrentPosition(
             async ({ coords }) => {

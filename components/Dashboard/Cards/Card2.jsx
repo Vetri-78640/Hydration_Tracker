@@ -3,7 +3,7 @@ import { useUserSettings } from '@/app/context/UserSettings';
 
 const Card2 = ({ className = "" }) => {
     const { dailyGoal, consumed } = useUserSettings();
-    // Calculate water fill height (0ml = 100%, dailyGoal ml = 0%)
+    // calculate water fill height (0ml = 100%, dailyGoal ml = 0%)
     const fillPercent = Math.max(0, 100 - (consumed / dailyGoal) * 100);
 
     return (

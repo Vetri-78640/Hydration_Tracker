@@ -19,6 +19,7 @@ const Signup = () => {
     const [
         createUserWithEmailAndPassword,
         userCredential,
+        // Resulting user credential object from the last signup attempt (or undefined if none)
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
@@ -26,23 +27,27 @@ const Signup = () => {
     const handleSignUp = async () => {
         const result = await createUserWithEmailAndPassword(email, password);
         if (result?.user) {
+            // if user exists then update name
             await updateProfile(result.user, { displayName: name });
             await result.user.reload();
+            // reload so it displays in UI
         }
     };
 
+    // This is for google accounts
     const handleGoogleSignUp = async () => {
         const provider = new GoogleAuthProvider();
         try {
             await signInWithPopup(auth, provider);
             toast.success("Signed up with Google");
             router.push("/dashboard");
-        } catch (err) {
-            console.error("Google Sign-Up error:", err.message);
+        } catch (error) {
+            console.error("Google Sign-Up error:", error.message);
             toast.error("Google Sign-Up failed");
         }
     };
 
+    // to reset variables
     useEffect(() => {
         if (userCredential) {
             setName("");
