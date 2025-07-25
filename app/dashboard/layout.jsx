@@ -25,11 +25,11 @@ const Content = ({ children }) => {
             </div>
 
             {/* Desktop sidebar */}
-            <div className="hidden lg:block fixed top-0 left-0 h-full w-[220px] z-20 p-4">
+            <div className="hidden lg:block fixed top-0 left-0 h-full w-[225px] z-20 p-4">
                 <Sidebar />
             </div>
 
-            <div className="lg:pl-[220px] p-3">
+            <div className="lg:pl-[225px] p-3">
                 <Dashboard>{children}</Dashboard>
             </div>
 
