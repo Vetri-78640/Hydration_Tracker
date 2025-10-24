@@ -76,7 +76,7 @@ const Card1 = ({ className = "" }) => {
                     }}
                 ></div>
             </div>
-            <div className="text-lg text-white/75">
+            <div className="text-lg" style={{ color: 'var(--text-secondary)' }}>
                 {consumed}ml / {dailyGoal}ml ({Math.round(progress)}%)
             </div>
         </main>

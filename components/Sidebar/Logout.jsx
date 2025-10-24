@@ -16,7 +16,8 @@ const Logout = () => {
             <div className="flex justify-center mt-4">
                 <button
                     onClick={handleLogout}
-                    className="flex items-center gap-4 px-3 py-2 rounded  hover:bg-blue-200/50 text-white transition-colors"
+                    className="flex items-center gap-4 px-3 py-2 rounded hover:bg-blue-200/50 transition-colors"
+                    style={{ color: 'var(--text-primary)' }}
                 >
                     <span>Logout</span>
                     <FiLogOut className="text-xl" />

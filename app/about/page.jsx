@@ -30,18 +30,18 @@ const AboutPage = () => {
                 </p>
 
                 <div className="mb-10">
-                    <div className="flex justify-center text-blue-300 mb-2 text-3xl">
+                    <div className="flex justify-center mb-2 text-3xl" style={{ color: 'var(--text-accent)' }}>
                         <FaEnvelope />
                     </div>
                     <h3 className="text-xl font-medium text-white mb-2">Email Me</h3>
                     <p className="text-white/75 mb-1">
                         Feel free to reach out for anything - support, ideas, or feedback.
                     </p>
-                    <p className="text-blue-300">mahirabd.official@gmail.com</p>
+                    <p style={{ color: 'var(--text-accent)' }}>mahirabd.official@gmail.com</p>
                 </div>
 
                 <div>
-                    <div className="flex justify-center text-blue-300 mb-2 text-3xl">
+                    <div className="flex justify-center mb-2 text-3xl" style={{ color: 'var(--text-accent)' }}>
                         <FaGithub />
                     </div>
                     <h3 className="text-xl font-medium text-white mb-2">Open Source</h3>
@@ -52,7 +52,8 @@ const AboutPage = () => {
                         href="https://github.com/mahir-m01/Hydration_Tracker"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-300 underline"
+                        className="underline"
+                        style={{ color: 'var(--text-accent)' }}
                     >
                         View on GitHub
                     </a>

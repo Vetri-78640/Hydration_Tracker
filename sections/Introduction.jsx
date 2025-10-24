@@ -24,21 +24,26 @@ const Introduction = () => {
         <section className="py-6 md:px-12 flex justify-center px-3">
             <div className="container px-3 md:w-2/3">
                 <div className="text-center sticky top-32 md:top-38 lg:top-40">
-                    <h2 className="inline-block px-6 py-4 rounded-full bg-blue-300/10 text-1xl md:text-2xl border border-blue-300/60 text-blue-300 mb-12">
+                    <h2 className="inline-block px-6 py-4 rounded-full bg-blue-300/10 text-1xl md:text-2xl border border-blue-300/60 mb-12" style={{ color: 'var(--text-accent)' }}>
                         Did you know ?
                     </h2>
-                    <div className="text-3xl md:text-4xl font-medium">
-                        <span>Dehydration doesn’t just make you thirsty</span>
+                                        <div className="text-3xl md:text-4xl font-medium">
+                        <span style={{ color: 'var(--text-primary)' }}>Dehydration doesn't just make you thirsty</span>
                         <span>{words.map((word,wordIndex)=>(
                             <span
                                 key={wordIndex}
-                                className={twMerge(("transition duration-500 text-white/5"),wordIndex < currentWord && "text-white")}
+                                className={twMerge(("transition duration-500"),wordIndex < currentWord && "opacity-100")}
+                                style={{
+                                    opacity: wordIndex < currentWord ? 1 : 0.05,
+                                    color: wordIndex < currentWord ? 'var(--text-primary)' : 'transparent'
+                                }}
                                 // if currentWord = 3.2 then words with index 0,1,2 will be rendered.
                             >
                                 {`${word} `}</span>
                         ))}</span>
                         <motion.span
-                            className="text-blue-300 block mt-8"
+                            className="block mt-8"
+                            style={{ color: 'var(--accent-color)' }}
                             initial={{opacity: 0}}
                             animate={{opacity: isComplete ? 1 : 0}}
                             transition={{duration: 1}}

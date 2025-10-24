@@ -135,14 +135,14 @@ const Signup = () => {
                     </div>
 
                     <Button onClick={handleGoogleSignUp} variant="secondary">
-                        <FaGoogle className="text-blue-300 size-4 mr-2" />
+                        <FaGoogle className="size-4 mr-2" style={{ color: 'var(--text-accent)' }} />
                         Continue with Google
                     </Button>
                 </form>
 
                 <p className="text-sm text-center text-white/60 mt-6">
                     Already have an account?{" "}
-                    <Link href="/login" className="text-blue-300 hover:underline">
+                    <Link href="/login" style={{ color: 'var(--text-accent)' }} className="hover:underline">
                         Log In
                     </Link>
                 </p>

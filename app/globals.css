@@ -11,14 +11,43 @@
     --font-overused: "OverusedGrotesk", sans-serif;
 }
 
+/* Dark theme (default) */
+html[data-theme="dark"],
+html {
+    --bg-primary: #050521;
+    --bg-secondary: rgba(5, 5, 33, 0.7);
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --border-color: rgba(59, 130, 246, 0.6);
+    --accent-color: #8EC5FF;
+    --accent-hover: #60a5fa;
+    --text-accent: #8EC5FF;
+}
+
+/* Light theme */
+html[data-theme="light"] {
+    --bg-primary: #c9d8f6;
+    --bg-secondary: rgba(222, 229, 245, 0.95);
+    --text-primary: #000000;
+    --text-secondary: #4a4a4a;
+    --border-color: rgba(27, 88, 112, 0.3);
+    --accent-color: #3e66aa;
+    --accent-hover: #3e66aa;
+    --text-accent: #3E66AA;
+}
+
 body {
     font-family: var(--font-overused), sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 /* Hide scrollbars but keep scroll functionality */
 .scrollbar-hidden {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
 }
+
 
 .scrollbar-hidden::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */

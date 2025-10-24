@@ -38,8 +38,8 @@ const Card4 = ({ className }) => {
 
     return (
         <main className={className}>
-            <h2 className="text-blue-300 font-semibold text-lg">Did you know ?</h2>
-            <p className="text-white/75 px-2">{fact}</p>
+            <h2 className="font-semibold text-lg" style={{ color: 'var(--text-accent)' }}>Did you know ?</h2>
+            <p style={{ color: 'var(--text-secondary)' }} className="px-2">{fact}</p>
         </main>
     );
 };
