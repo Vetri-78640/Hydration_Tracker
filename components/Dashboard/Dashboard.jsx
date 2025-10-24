@@ -3,7 +3,7 @@ import { TopBar } from "@/components/Dashboard/TopBar";
 
 const Dashboard = ({ children }) => {
     return (
-        <div className="bg-blue-950/40 rounded-xl shadow p-4 min-h-screen">
+        <div className="rounded-xl shadow p-4 min-h-screen" style={{ backgroundColor: 'var(--bg-secondary)' }}>
             <TopBar />
             {children}
         </div>

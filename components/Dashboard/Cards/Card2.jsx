@@ -46,7 +46,7 @@ const Card2 = ({ className = "" }) => {
                     </g>
                 </svg>
             </div>
-            <div className="text-center text-xl text-white/75 mb-4">
+            <div className="text-center text-xl mb-4" style={{ color: 'var(--text-secondary)' }}>
                 {consumed < dailyGoal
                     ? `${dailyGoal - consumed} ml remaining`
                     : 'Bottle Empty !'}

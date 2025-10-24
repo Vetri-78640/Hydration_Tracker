@@ -19,7 +19,8 @@ const CallToAction = () => {
                         repeat: Infinity,
                     }}
 
-                    className="flex flex-none gap-16 pr-16 text-7xl md:text-8xl font-medium whitespace-nowrap">
+                    className="flex flex-none gap-16 pr-16 text-7xl md:text-8xl font-medium whitespace-nowrap"
+                    style={{ color: 'var(--text-primary)' }}>
 
                     {/*flex-none is to keep width fixed to prevent it from shrinking
                     Tip: add pr-16 same as gap-16 to account for jumps*/}
@@ -28,13 +29,13 @@ const CallToAction = () => {
                         //creates an array of 10 items to duplicate it 10 times
                         <div key={i} className="flex items-center gap-8">
                             <Image
-                                src="/assets/images/water.svg"
+                                src="/assets/images/water 1.svg"
                                 alt="water"
                                 height={16}
                                 width={16}
                                 className="w-14 md:w-18"
                             />
-                            <span>Sip. Track. Hydraze.</span>
+                            <span><span style={{ color: 'var(--text-accent)' }}>Sip. Track. Hydraze.</span></span>
                         </div>
                     ))}
                 </motion.div>

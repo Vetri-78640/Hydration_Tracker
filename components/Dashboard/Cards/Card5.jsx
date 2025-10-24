@@ -11,8 +11,8 @@ const Card5 = ({ className }) => {
 
     return (
         <main className={className}>
-            <h2 className="text-lg font-semibold text-blue-300">Suggestion</h2>
-            <p className="text-white/75 leading-relaxed">
+            <h2 className="text-lg font-semibold" style={{ color: 'var(--text-accent)' }}>Suggestion</h2>
+            <p style={{ color: 'var(--text-secondary)' }} className="leading-relaxed">
                 To meet your goal of <span className="font-semibold">{dailyGoal}ml</span>, try drinking about{" "}
                 <span className="font-semibold">{perInterval}ml</span> every{" "}
                 <span className="font-semibold">{hours.toFixed(1)} hours</span>.

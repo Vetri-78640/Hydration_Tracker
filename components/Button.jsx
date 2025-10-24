@@ -12,7 +12,7 @@ const buttonClasses = cva(
             variant: {
                 primary: "bg-blue-300 text-neutral-950 border-blue-300/60 transition-all duration-100 ease-in-out hover:delay-50 hover:bg-blue-200",
 
-                secondary: "border-blue-300 text-white bg-transparent transition-all duration-100 ease-in-out hover:delay-50 hover:bg-blue-100/15",
+                secondary: "border-blue-300 bg-transparent transition-all duration-100 ease-in-out hover:delay-50 hover:bg-blue-100/15",
             },
         },
         defaultVariants: {
@@ -21,20 +21,27 @@ const buttonClasses = cva(
     }
 );
 
+const getSecondaryButtonStyle = () => ({
+    color: 'var(--accent-color)',
+    borderColor: 'var(--border-color)',
+});
+
 const Button = ({ children, className, variant, href, onClick }) => {
     const mergedClasses = twMerge(buttonClasses({ variant }), "cursor-pointer", className);
     // Tis a utility from the tailwind-merge library that safely merges multiple tailwind class strings
 
+    const style = variant === 'secondary' ? getSecondaryButtonStyle() : {};
+
     if (href) {
         return (
-            <Link href={href} className={mergedClasses}>
+            <Link href={href} className={mergedClasses} style={style}>
                 {children}
             </Link>
         );
     }
 
     return (
-        <button className={mergedClasses} onClick={onClick}>
+        <button className={mergedClasses} onClick={onClick} style={style}>
             {children}
         </button>
 

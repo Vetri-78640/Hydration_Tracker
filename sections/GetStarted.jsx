@@ -9,8 +9,8 @@ const GetStarted = () => {
                 <h2 className="text-6xl font-medium text-center">
                     Convinced?
                 </h2>
-                <h3 className="text-blue-300 text-4xl text-center">
-                    Get started with Hydraze
+                <h3 className="text-4xl text-center" style={{ color: 'var(--text-accent)' }}>
+                    Get started with <span style={{ color: 'var(--text-accent)' }}>Hydraze</span>
                 </h3>
             </div>
             <Button href="/sign-up">Sign Up</Button>

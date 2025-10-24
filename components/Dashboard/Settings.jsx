@@ -36,12 +36,12 @@ const Settings = () => {
     return (
         <main className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-3">
             <section className="col-span-4">
-                <h1 className="text-2xl font-bold text-white mb-1">Settings</h1>
-                <p className="font-semibold text-white/75 mb-6">Update your preferences.</p>
+                <h1 className="text-2xl font-bold mb-1" style={{ color: 'var(--text-primary)' }}>Settings</h1>
+                <p className="font-semibold mb-6" style={{ color: 'var(--text-secondary)' }}>Update your preferences.</p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label htmlFor="goal" className="block mb-2 text-white font-semibold">
+                        <label htmlFor="goal" className="block mb-2 font-semibold" style={{ color: 'var(--text-primary)' }}>
                             Daily Water Goal (ml)
                         </label>
                         <input
@@ -55,7 +55,7 @@ const Settings = () => {
                     </div>
 
                     <div>
-                        <label className="block mb-2 text-white font-semibold">
+                        <label className="block mb-2 font-semibold" style={{ color: 'var(--text-primary)' }}>
                             Quick Add Button Amounts (ml)
                         </label>
                         <div className="flex gap-2">

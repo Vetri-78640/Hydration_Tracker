@@ -27,10 +27,11 @@ const RouteSelect = () => {
                             className={`flex items-center justify-start gap-2 w-full rounded-xl px-2 py-1.5 text-sm transition-all ${
                                 isSelected
                                     ? "bg-blue-200 text-black shadow"
-                                    : "hover:bg-blue-200/50 bg-transparent text-white/75 shadow-none"
+                                    : "hover:bg-blue-200/50 bg-transparent shadow-none"
                             }`}
+                            style={!isSelected ? { color: 'var(--text-secondary)' } : {}}
                         >
-                            <Icon className={isSelected ? "text-blue-600" : ""} />
+                            <Icon style={isSelected ? { color: 'var(--text-accent)' } : {}} />
                             <span>{title}</span>
                         </button>
                     </Link>

@@ -110,14 +110,14 @@ const Login = () => {
                         onClick={handleGoogleSignIn}
                         variant="secondary"
                     >
-                        <FaGoogle className="text-blue-300 size-4 mr-2" />
+                        <FaGoogle className="size-4 mr-2" style={{ color: 'var(--text-accent)' }} />
                         Continue with Google
                     </Button>
                 </form>
 
                 <p className="text-sm text-center text-white/60 mt-6">
                     Don't have an account?{" "}
-                    <Link href="/sign-up" className="text-blue-300 hover:underline">
+                    <Link href="/sign-up" style={{ color: 'var(--text-accent)' }} className="hover:underline">
                         Sign Up
                     </Link>
                 </p>

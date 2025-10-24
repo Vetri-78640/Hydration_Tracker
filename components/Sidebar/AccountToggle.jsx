@@ -16,8 +16,8 @@ const AccountToggle = () => {
                     className="size-9 rounded-full shrink-0 bg-blue-950 shadow"
                 />
                 <div className="text-start ml-2">
-                    <span className="text-blue-300 text-sm font-bold block">{name || "loading..."}</span>
-                    <span className="text-xs block text-white/75">{email}</span>
+                    <span className="text-sm font-bold block" style={{ color: 'var(--text-accent)' }}>{name || "loading..."}</span>
+                    <span className="text-xs block" style={{ color: 'var(--text-secondary)' }}>{email}</span>
                 </div>
             </div>
             <div className="lg:hidden">
@@ -26,10 +26,11 @@ const AccountToggle = () => {
                     onClick={closeSidebar}
                     aria-label="Close sidebar"
                     className="ml-2 p-1"
+                    style={{ color: 'var(--text-secondary)' }}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="size-6 text-white/75"
+                        className="size-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"

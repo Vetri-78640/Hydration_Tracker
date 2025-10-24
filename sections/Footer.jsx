@@ -2,6 +2,7 @@
 import React from 'react'
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "@/app/context/ThemeContext";
 
 const footerLinks = [
     {href: '/about#about', label: 'About'},
@@ -10,13 +11,15 @@ const footerLinks = [
 ];
 
 const Footer = () => {
+    const { theme } = useTheme();
+    
     return (
         <section className="py-16 px-3">
             <div className="w-full">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                     <div>
                         <Image
-                            src="/assets/images/icon.svg"
+                            src={theme === 'light' ? "/assets/images/icon Dark Theme.svg" : "/assets/images/icon.svg"}
                             alt="logo"
                             width={16}
                             height={16}
@@ -28,8 +31,11 @@ const Footer = () => {
                             {footerLinks.map(link => (
                                 <Link href={link.href}
                                       key={link.href}
-                                      className="text-white/70
-                                    hover:text-blue-300 transition-colors duration-300">
+                                      className="text-white/70 transition-colors duration-300"
+                                      style={{ color: 'var(--text-secondary)' }}
+                                      onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-accent)'}
+                                      onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+                                >
                                     {link.label}
                                 </Link>
                             ))}

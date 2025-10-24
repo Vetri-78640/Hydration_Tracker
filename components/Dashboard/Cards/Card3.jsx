@@ -49,11 +49,11 @@ const Card3 = ({ className }) => {
     return (
         //look at api structure to understand better
         <main className={className}>
-            {loading && <p className="text-white">Loading weather...</p>}
+            {loading && <p style={{ color: 'var(--text-primary)' }}>Loading weather...</p>}
             {error && <p className="text-red-400">{error}</p>}
 
             {weather && (
-                <div className="text-white flex flex-col items-center">
+                <div className="flex flex-col items-center" style={{ color: 'var(--text-primary)' }}>
                     <h2 className="text-lg font-semibold">{weather.name}</h2>
 
                     <img
@@ -65,11 +65,11 @@ const Card3 = ({ className }) => {
                     <p className="text-xl">
                         {Math.round(weather.main.temp)}°C
                     </p>
-                    <p className="capitalize mb-2 text-white/75">
+                    <p className="capitalize mb-2" style={{ color: 'var(--text-secondary)' }}>
                         {weather.weather[0].description}
                     </p>
 
-                    <p className="text-base text-center text-blue-300 font-semibold">
+                    <p className="text-base text-center font-semibold" style={{ color: 'var(--text-accent)' }}>
                         {getSuggestion(Math.round(weather.main.temp))}
                     </p>
                 </div>
