@@ -24,7 +24,7 @@ const Introduction = () => {
         <section className="py-6 md:px-12 flex justify-center px-3">
             <div className="container px-3 md:w-2/3">
                 <div className="text-center sticky top-32 md:top-38 lg:top-40">
-                    <h2 className="inline-block px-6 py-4 rounded-full bg-blue-300/10 text-1xl md:text-2xl border border-blue-300/60 mb-12" style={{ color: 'var(--text-accent)' }}>
+                    <h2 className="inline-block px-6 py-4 rounded-full bg-blue-300/10 text-1xl md:text-2xl mb-12" style={{ color: '#8EC5FF', borderColor: '#8EC5FF', border: '1px solid' }}>
                         Did you know ?
                     </h2>
                                         <div className="text-3xl md:text-4xl font-medium">
@@ -32,10 +32,10 @@ const Introduction = () => {
                         <span>{words.map((word,wordIndex)=>(
                             <span
                                 key={wordIndex}
-                                className={twMerge(("transition duration-500"),wordIndex < currentWord && "opacity-100")}
+                                className="transition duration-500"
                                 style={{
-                                    opacity: wordIndex < currentWord ? 1 : 0.05,
-                                    color: wordIndex < currentWord ? 'var(--text-primary)' : 'transparent'
+                                    color: wordIndex < currentWord ? 'var(--text-primary)' : 'var(--text-secondary)',
+                                    opacity: wordIndex < currentWord ? 1 : 0.3
                                 }}
                                 // if currentWord = 3.2 then words with index 0,1,2 will be rendered.
                             >
@@ -43,7 +43,7 @@ const Introduction = () => {
                         ))}</span>
                         <motion.span
                             className="block mt-8"
-                            style={{ color: 'var(--accent-color)' }}
+                            style={{ color: 'var(--text-accent)' }}
                             initial={{opacity: 0}}
                             animate={{opacity: isComplete ? 1 : 0}}
                             transition={{duration: 1}}

@@ -16,7 +16,7 @@ const Content = ({ children }) => {
         <main>
             {/* Mobile sidebar */}
             <div
-                className={`block lg:hidden fixed top-0 left-0 h-full w-[260px] z-30 p-4 bg-[#050521] pt-6
+                className={`block lg:hidden fixed top-0 left-0 h-full w-[260px] z-30 p-3 bg-[#050521] pt-6
           transform transition-transform duration-300 ease-in-out
           ${sidebarOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}
                 style={{ transitionProperty: "transform, opacity" }}
@@ -25,11 +25,11 @@ const Content = ({ children }) => {
             </div>
 
             {/* Desktop sidebar */}
-            <div className="hidden lg:block fixed top-0 left-0 h-full w-[225px] z-20 p-4">
+            <div className="hidden lg:block fixed top-0 left-0 h-full w-[225px] z-20 p-3">
                 <Sidebar />
             </div>
 
-            <div className="lg:pl-[225px] p-3">
+            <div className="lg:pl-[225px] h-screen overflow-hidden">
                 <Dashboard>{children}</Dashboard>
             </div>
 

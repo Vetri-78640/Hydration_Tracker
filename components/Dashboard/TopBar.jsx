@@ -37,7 +37,7 @@ export const TopBar = () => {
     }
 
     return (
-            <div className="border-b mb-4 pb-4 border-blue-300/50">
+            <div className="border-b pb-4" style={{ borderColor: 'var(--border-color)', marginLeft: '2px', marginTop:'4px'}}>
                 <div className="flex items-center gap-3">
                     <button
                         onClick={openSidebar}

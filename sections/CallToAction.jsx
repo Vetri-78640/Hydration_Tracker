@@ -2,7 +2,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/app/context/ThemeContext';
+
 const CallToAction = () => {
+    const { theme } = useTheme();
     return (
         <section className="py-24">
             <div className="overflow-x-clip p-4 flex">
@@ -29,7 +32,7 @@ const CallToAction = () => {
                         //creates an array of 10 items to duplicate it 10 times
                         <div key={i} className="flex items-center gap-8">
                             <Image
-                                src="/assets/images/water 1.svg"
+                                src={theme === 'light' ? "/assets/images/water light theme.svg" : "/assets/images/water dark theme.svg"}
                                 alt="water"
                                 height={16}
                                 width={16}
