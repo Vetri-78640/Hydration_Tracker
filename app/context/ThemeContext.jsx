@@ -12,6 +12,7 @@ export const ThemeProvider = ({ children }) => {
         const savedTheme = localStorage.getItem('theme') || 'dark';
         setTheme(savedTheme);
         document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.removeAttribute('style');
         setMounted(true);
     }, []);
 
@@ -24,8 +25,9 @@ export const ThemeProvider = ({ children }) => {
         });
     };
 
+    // Prevent hydration mismatch by not rendering content until mounted
     if (!mounted) {
-        return children;
+        return <>{children}</>;
     }
 
     return (

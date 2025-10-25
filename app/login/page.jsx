@@ -53,7 +53,6 @@ const Login = () => {
             if (error.code === "auth/invalid-credential") {
                 toast.error("Invalid email or password.");
             }
-            console.error("Login error:", error.code, error.message);
         }
     }, [error]);
 
