@@ -45,7 +45,7 @@ const Navbar = ({ className = "" }) => {
         <>
             <section className={twMerge("py-4 lg:py-8 px-3 fixed w-full top-0 z-20 transition-opacity duration-500", className)}>
                 <div className="container max-w-5xl mx-auto">
-                    <div className="border border-blue-300/60 backdrop-blur rounded-[27px] md:rounded-full" style={{ backgroundColor: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}>
+                    <div className="backdrop-blur rounded-[27px] md:rounded-full" style={{ backgroundColor: 'var(--bg-secondary)', borderColor: '#8EC5FF', border: '1px solid #8EC5FF' }}>
                         <div className="grid grid-cols-2 lg:grid-cols-3 px-4 p-2 md:pr-2 items-center">
                             <div>
                                 <Link href="/">
@@ -76,7 +76,7 @@ const Navbar = ({ className = "" }) => {
                                 </nav>
                             </div>
 
-                            <div className="flex justify-end gap-4">
+                            <div className="flex justify-end gap-2 items-center">
                                 {/* Theme toggle button */}
                                 <button
                                     onClick={toggleTheme}
@@ -161,7 +161,7 @@ const Navbar = ({ className = "" }) => {
 
                                 {email ? (
                                     <>
-                                        <Button variant="secondary" className="hidden md:inline-flex" href="/dashboard">
+                                        <Button variant="secondary" className="hidden md:inline-flex mr-2" href="/dashboard">
                                             Dashboard
                                         </Button>
                                         <Button variant="primary" className="hidden md:inline-flex" onClick={handleLogout}>
@@ -170,7 +170,7 @@ const Navbar = ({ className = "" }) => {
                                     </>
                                 ) : (
                                     <>
-                                        <Button variant="secondary" className="hidden md:inline-flex" href="/login">
+                                        <Button variant="secondary" className="hidden md:inline-flex mr-6" href="/login">
                                             Log In
                                         </Button>
                                         <Button variant="primary" className="hidden md:inline-flex" href="/sign-up">

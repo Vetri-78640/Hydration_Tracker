@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
         <body className="antialiased overflow-x-hidden" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
         <ThemeProvider>
             <UserProvider>
