@@ -14,7 +14,7 @@ const Footer = () => {
     const { theme } = useTheme();
     
     return (
-        <section className="py-16 px-12">
+        <section className="pt-16 pb-4 px-12">
             <div className="w-full">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                     <div>
@@ -31,7 +31,7 @@ const Footer = () => {
                             {footerLinks.map(link => (
                                 <Link href={link.href}
                                       key={link.href}
-                                      className="group relative font-semi text-white/90 tracking-wide transition-colors duration-300"
+                                      className="group relative font-semi text-white/90 text-lg tracking-wide transition-colors duration-300"
                                       style={{ color: 'var(--text-secondary)' }}
                                       onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-accent)'}
                                       onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}

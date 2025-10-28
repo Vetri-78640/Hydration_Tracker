@@ -161,7 +161,7 @@ const Navbar = ({ className = "" }) => {
 
                                 {email ? (
                                     <>
-                                        <Button variant="secondary" className="hidden md:inline-flex mr-2" href="/dashboard">
+                                        <Button variant="secondary" className="hidden md:inline-flex" href="/dashboard">
                                             Dashboard
                                         </Button>
                                         <Button variant="primary" className="hidden md:inline-flex" onClick={handleLogout}>
@@ -170,7 +170,7 @@ const Navbar = ({ className = "" }) => {
                                     </>
                                 ) : (
                                     <>
-                                        <Button variant="secondary" className="hidden md:inline-flex mr-6" href="/login">
+                                        <Button variant="secondary" className="hidden md:inline-flex" href="/login">
                                             Log In
                                         </Button>
                                         <Button variant="primary" className="hidden md:inline-flex" href="/sign-up">

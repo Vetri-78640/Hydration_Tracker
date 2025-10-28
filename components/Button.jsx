@@ -10,7 +10,8 @@ const buttonClasses = cva(
     {
         variants: {
             variant: {
-                primary: "transition-all duration-100 ease-in-out hover:delay-50",
+                // primary uses CSS variables for colors so we can animate bg on hover
+                primary: "bg-[var(--btn-bg)] text-[var(--btn-color)] transition-colors duration-200 ease-in-out hover:bg-[var(--btn-bg-hover)]",
 
                 secondary: "bg-transparent transition-all duration-100 ease-in-out hover:delay-50 hover:bg-blue-100/15",
             },
@@ -22,9 +23,12 @@ const buttonClasses = cva(
 );
 
 const getPrimaryButtonStyle = () => ({
-    backgroundColor: '#8EC5FF',
-    color: '#000000',
-    borderColor: '#8EC5FF',
+    // expose css variables used by the Tailwind arbitrary classes above
+    // --btn-bg: normal background, --btn-bg-hover: hover background, --btn-color: text color
+    '--btn-bg': '#8EC5FF',
+    '--btn-bg-hover': '#6FC0FF',
+    '--btn-color': '#000000',
+    borderColor: '8EC5FF',
 });
 
 const getSecondaryButtonStyle = () => ({
