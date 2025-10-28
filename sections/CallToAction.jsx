@@ -22,7 +22,7 @@ const CallToAction = () => {
                         repeat: Infinity,
                     }}
 
-                    className="flex flex-none gap-16 pr-16 text-7xl md:text-8xl font-medium whitespace-nowrap"
+                    className="flex flex-none gap-16 pr-16 text-7xl md:text-5xl font-medium whitespace-nowrap"
                     style={{ color: 'var(--text-primary)' }}>
 
                     {/*flex-none is to keep width fixed to prevent it from shrinking
